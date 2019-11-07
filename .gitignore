@@ -1,3 +1,5 @@
 node_modules
 *.json
 *.yml
+../.DS_Store
+.DS_Store
