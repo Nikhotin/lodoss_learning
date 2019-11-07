@@ -11,23 +11,13 @@ import {catsGroupGenerate} from './js_sync_task3';
 let catsArr = catsGroupGenerate(999);
 
 function findGenderM(catsArr){
-    let findObj = {gender: 'M'}
-
-    const result = catsArr.filter(cat =>
-        Object.keys(findObj).every(key =>
-            cat[key] === findObj[key])
-            );
+    let result = catsArr.filter(cat => cat.gender == 'M');
 
     return result
 }
 
 function findGenderW(catsArr){
-    let findObj = {gender: 'W'}
-
-    const result = catsArr.filter(cat =>
-        Object.keys(findObj).every(key =>
-            cat[key] === findObj[key])
-            );
+    let result = catsArr.filter(cat => cat.gender == 'W');
 
     return result
 }
@@ -45,40 +35,18 @@ function getNames(catsArr){
 
 function oldestCatsM(catsArr, n){
     let oldestCatsList = [];
-    let findObj = {gender: 'M'}
-
-    const result = catsArr.filter(cat =>
-        Object.keys(findObj).every(key =>
-            cat[key] === findObj[key])
-            );
-
+    let result = catsArr.filter(cat => cat.gender == 'M');
     let catSort = result.sort((a, b) => b.age - a.age);
-
-    while (n>0){
-        let oldCat = catSort.shift();
-        oldestCatsList.push(oldCat);
-        n--;
-    }
+    oldestCatsList = catSort.slice(0, n);
 
     return oldestCatsList
 }
 
 function youngestCatsW(catsArr, n){
     let youngestCatsList = [];
-    let findObj = {gender: 'W'}
-
-    const result = catsArr.filter(cat =>
-        Object.keys(findObj).every(key =>
-            cat[key] === findObj[key])
-            );
-
-    let catSort = result.sort((a, b) => b.age - a.age);
-
-    while (n>0){
-        let oldCat = catSort.pop();
-        youngestCatsList.push(oldCat);
-        n--;
-    }
+    let result = catsArr.filter(cat => cat.gender == 'W');
+    let catSort = result.sort((a, b) => a.age - b.age);
+    youngestCatsList = catSort.slice(0, n);
 
     return youngestCatsList
 }

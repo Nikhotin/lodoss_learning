@@ -10,11 +10,13 @@ import {tailLength} from './js_sync_task2';
 
 function catsGroupGenerate (n){
     let catList = [];
-    let cat = catFactory();
+
     while (n>0){
+        let cat = catFactory();
         catList.push(cat);
         n--;
     }
+    
     return catList
 }
 console.log(catsGroupGenerate(5))
