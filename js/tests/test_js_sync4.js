@@ -1,83 +1,5 @@
 var assert = require('chai').assert;
-
-let name = ['Vasya', 'Barsik', 'Rizhik', 'Genadiy','Albert', 'Pyshok'];
-let age = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
-let gender = ['M', 'W'];
-let legsCount = [2, 3, 4];
-let tailLength = ['10sm', '15sm', '20sm', '25sm', '30sm'];
-
-function pick (list){
-    let listLen = list.length;
-    let position = Math.floor(Math.random() * Math.floor(listLen));
-    return list[position];
-}
-function catFactory() {
-    let catName = pick(name)
-    let catAge = pick(age)
-    let catGender = pick(gender)
-    let catLegsCount = pick(legsCount)
-    let catTailLength = pick(tailLength)
-    let randomCat = {
-        name: catName,
-        age: catAge,
-        gender: catGender,
-        legsCount: catLegsCount,
-        tailLength: catTailLength,
-    }
-    return randomCat
-}
-function catsGroupGenerate (n){
-    let catList = [];
-
-    while (n>0){
-        let cat = catFactory();
-        catList.push(cat);
-        n--;
-    }
-    return catList
-}
-let catsArr = catsGroupGenerate(999);
-
-function findGenderM(catsArr){
-    let result = catsArr.filter(cat => cat.gender == 'M');
-
-    return result
-}
-
-function findGenderW(catsArr){
-    let result = catsArr.filter(cat => cat.gender == 'W');
-
-    return result
-}
-
-function getNames(catsArr){
-    let catsNames = [];
-     
-    catsArr.forEach(function(item){
-            let catName = Object.values(item)[0];
-            catsNames.push(catName);
-    }); 
-    
-    return catsNames
-}
-
-function oldestCatsM(catsArr, n){
-    let oldestCatsList = [];
-    let result = catsArr.filter(cat => cat.gender == 'M');
-    let catSort = result.sort((a, b) => b.age - a.age);
-    oldestCatsList = catSort.slice(0, n);
-
-    return oldestCatsList
-}
-
-function youngestCatsW(catsArr, n){
-    let youngestCatsList = [];
-    let result = catsArr.filter(cat => cat.gender == 'W');
-    let catSort = result.sort((a, b) => a.age - b.age);
-    youngestCatsList = catSort.slice(0, n);
-
-    return youngestCatsList
-}
+var _js_task4 = require('../src/js_sync_task4');
 
 
 describe("findGenderM", function() {
@@ -85,7 +7,7 @@ describe("findGenderM", function() {
     describe("Принадлежат ли все отсортированные коты гендеру М", function() {
         
         it("Все отсортированные элементы принадлежат гендеру M", function() {
-            let result = findGenderM(catsArr);
+            let result = _js_task4.findGenderM(_js_task4.catsArr);
             let counter = result.length;
 
             while(counter > 0){
@@ -104,7 +26,7 @@ describe("findGenderW", function() {
     describe("Принадлежат ли все отсортированные коты гендеру W", function() {
         
         it("Все отсортированные элементы принадлежат гендеру W", function() {
-            let result = findGenderW(catsArr);
+            let result = _js_task4.findGenderW(_js_task4.catsArr);
             let counter = result.length;
     
             while(counter > 0){
@@ -123,8 +45,8 @@ describe("getNames", function() {
     describe("Количество имен соответствует количеству элементов массива", function() {
         
         it("Количества совпадают", function() {
-            let result = getNames(catsArr);
-            let counter = catsArr.length;
+            let result = _js_task4.getNames(_js_task4.catsArr);
+            let counter = _js_task4.catsArr.length;
 
             assert.equal(result.length, counter);
 
@@ -135,11 +57,11 @@ describe("getNames", function() {
     describe("Отобранные имена соответствуют именам в массиве объектов", function() {
         
         it("Имена совпали", function() {
-            let result = getNames(catsArr);
+            let result = _js_task4.getNames(_js_task4.catsArr);
             let counter = result.length;
     
             while(counter > 0){
-                let a = catsArr[counter-1];
+                let a = _js_task4.catsArr[counter-1];
                 assert.equal(a.name, result[counter-1]);
                 counter--
             }
@@ -157,7 +79,7 @@ describe("oldestCatsM", function() {
         it("Элементы расположены в нужном порядке и их количество верно", function() {
             let n = 25;
             while(n > 0) {
-                let result = oldestCatsM(catsArr, n);
+                let result = _js_task4.oldestCatsM(_js_task4.catsArr, n);
                 let counter = result.length;
 
                 assert.equal(counter, n);
@@ -186,7 +108,7 @@ describe("youngestCatW", function() {
         it("Элементы расположены в нужном порядке и их количество верно", function() {
             let n = 25;
             while(n > 0) {
-                let result = youngestCatsW(catsArr, n);
+                let result = _js_task4.youngestCatsW(_js_task4.catsArr, n);
                 let counter = result.length;
 
                 assert.equal(counter, n);

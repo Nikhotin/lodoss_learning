@@ -1,21 +1,17 @@
-export {catFactory};
-export {name, age, gender, legsCount, tailLength};
+let _js_task1 = require('./js_sync_task1');
 
-import {pick} from './js_sync_task1';
-
-
-let name = ['Vasya', 'Barsik', 'Rizhik', 'Genadiy','Albert', 'Pyshok'];
-let age = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
-let gender = ['M', 'W'];
-let legsCount = [2, 3, 4];
-let tailLength = ['10sm', '15sm', '20sm', '25sm', '30sm'];
+var name = ['Vasya', 'Barsik', 'Rizhik', 'Genadiy','Albert', 'Pyshok'];
+var age = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+var gender = ['M', 'W'];
+var legsCount = [2, 3, 4];
+var tailLength = ['10sm', '15sm', '20sm', '25sm', '30sm'];
 
 function catFactory() {
-    let catName = pick(name)
-    let catAge = pick(age)
-    let catGender = pick(gender)
-    let catLegsCount = pick(legsCount)
-    let catTailLength = pick(tailLength)
+    let catName = _js_task1.pick(name)
+    let catAge = _js_task1.pick(age)
+    let catGender = _js_task1.pick(gender)
+    let catLegsCount = _js_task1.pick(legsCount)
+    let catTailLength = _js_task1.pick(tailLength)
     let randomCat = {
         name: catName,
         age: catAge,
@@ -26,4 +22,9 @@ function catFactory() {
     return randomCat
 }
 
-console.log(catFactory())
+exports.name = name;
+exports.age = age;
+exports.gender = gender;
+exports.legsCount = legsCount;
+exports.tailLength = tailLength;
+module.exports.catFactory = catFactory;

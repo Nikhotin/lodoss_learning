@@ -1,28 +1,19 @@
-export {findGenderM};
-export {findGenderW};
-export {getNames};
-export {oldestCatsM};
-export {youngestCatsW};
-export {catsArr};
+let _js_task3 = require('./js_sync_task3');
+let catsArr = _js_task3.catsGroupGenerate(999);
 
-
-import {catsGroupGenerate} from './js_sync_task3';
-
-let catsArr = catsGroupGenerate(999);
-
-function findGenderM(catsArr){
+function findGenderM(catsArr) {
     let result = catsArr.filter(cat => cat.gender == 'M');
 
     return result
 }
 
-function findGenderW(catsArr){
+function findGenderW(catsArr) {
     let result = catsArr.filter(cat => cat.gender == 'W');
 
     return result
 }
 
-function getNames(catsArr){
+function getNames(catsArr) {
     let catsNames = [];
      
     catsArr.forEach(function(item){
@@ -33,7 +24,7 @@ function getNames(catsArr){
     return catsNames
 }
 
-function oldestCatsM(catsArr, n){
+function oldestCatsM(catsArr, n) {
     let oldestCatsList = [];
     let result = catsArr.filter(cat => cat.gender == 'M');
     let catSort = result.sort((a, b) => b.age - a.age);
@@ -42,7 +33,7 @@ function oldestCatsM(catsArr, n){
     return oldestCatsList
 }
 
-function youngestCatsW(catsArr, n){
+function youngestCatsW(catsArr, n) {
     let youngestCatsList = [];
     let result = catsArr.filter(cat => cat.gender == 'W');
     let catSort = result.sort((a, b) => a.age - b.age);
@@ -51,8 +42,9 @@ function youngestCatsW(catsArr, n){
     return youngestCatsList
 }
 
-console.log(catsArr);
-console.log(findGenderM(catsArr));
-console.log(getNames(catsArr));
-console.log(oldestCatsM(catsArr, 10));
-console.log(youngestCatsW(catsArr, 10));
+exports.catsArr = catsArr;
+module.exports.findGenderM = findGenderM;
+module.exports.findGenderW = findGenderW;
+module.exports.getNames = getNames;
+module.exports.oldestCatsM = oldestCatsM;
+module.exports.youngestCatsW = youngestCatsW;

@@ -1,14 +1,10 @@
-export {catFactory};
-export {name, age, gender, legsCount, tailLength};
+let _js_task1 = require('./js_sync_task1');
 
-import {pick} from './js_sync_task1';
-
-
-let name = ['Vasya', 'Barsik', 'Rizhik', 'Genadiy','Albert', 'Pyshok'];
-let age = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
-let gender = ['M', 'W'];
-let legsCount = [2, 3, 4];
-let tailLength = ['10sm', '15sm', '20sm', '25sm', '30sm'];
+var name = ['Vasya', 'Barsik', 'Rizhik', 'Genadiy','Albert', 'Pyshok'];
+var age = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+var gender = ['M', 'W'];
+var legsCount = [2, 3, 4];
+var tailLength = ['10sm', '15sm', '20sm', '25sm', '30sm'];
 
 
 function catFactory(defaults) {
@@ -17,37 +13,37 @@ function catFactory(defaults) {
     let catGender;
     let catLegsCount;
     let catTailLength;
-
+    
     if( defaults.name === undefined){
-        cat_name = pick(name)
+        catName = _js_task1.pick(name)
     } else {
         catName = defaults.name
     }
-
+    
     if( defaults.age === undefined){
-        catAge = pick(age)
+        catAge = _js_task1.pick(age)
     } else {
         catAge = defaults.age
     }
-
+    
     if( defaults.gender === undefined){
-        catGender = pick(gender)
+        catGender = _js_task1.pick(gender)
     } else {
         catGender = defaults.gender
     }
-
+    
     if( defaults.legsCount === undefined){
-        catLegsCount = pick(legsCount)
+        catLegsCount = _js_task1.pick(legsCount)
     } else {
         catLegsCount = defaults.legsCount
     }
-
+    
     if( defaults.tailLength === undefined){
-        catTailLength = pick(tailLength)
+        catTailLength = _js_task1.pick(tailLength)
     } else {
         catTailLength = defaults.tailLength
     }
-
+    
     let randomCat = {
         name: catName,
         age: catAge,
@@ -58,4 +54,10 @@ function catFactory(defaults) {
     return randomCat
 }
 
-console.log(catFactory())
+
+module.exports.catFactory = catFactory;
+exports.name = name;
+exports.age = age;
+exports.gender = gender;
+exports.legsCount = legsCount;
+exports.tailLength = tailLength;

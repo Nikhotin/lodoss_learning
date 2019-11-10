@@ -1,53 +1,30 @@
 var assert = require('chai').assert;
-
-let name = ['Vasya', 'Barsik', 'Rizhik', 'Genadiy','Albert', 'Pyshok'];
-let age = ['Less than a year', 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
-let gender = ['M', 'W'];
-let legsCount = [2, 3, 4];
-let tailLength = ['10sm', '15sm', '20sm', '25sm', '30sm'];
-
-function pick (list){
-    let listLen = list.length;
-    let position = Math.floor(Math.random() * Math.floor(listLen));
-    return list[position];
-}
-
-function catFactory() {
-    let catName = pick(name)
-    let catAge = pick(age)
-    let catGender = pick(gender)
-    let catLegsCount = pick(legsCount)
-    let catTailLength = pick(tailLength)
-    let randomCat = {
-        name: catName,
-        age: catAge,
-        gender: catGender,
-        legsCount: catLegsCount,
-        tailLength: catTailLength,
-    }
-    return randomCat
-}
+var _js_task2 = require('../src/js_sync_task2');
 
 
 describe("catFactory", function() {
 
     describe("Принадлежность свойств объекта к элементам словаря", function() {
-        let a = catFactory();
 
         it("Свойство catName принадлежит массиву name", function() {
-            assert.include(name, a.name);
+            let a = _js_task2.catFactory();
+            assert.include(_js_task2.name, a.name);
         });
         it("Свойство catAge принадлежит массиву age", function() {
-            assert.include(age, a.age);
+            let a = _js_task2.catFactory();
+            assert.include(_js_task2.age, a.age);
         });
         it("Свойство catGender принадлежит массиву gender", function() {
-            assert.include(gender, a.gender);
+            let a = _js_task2.catFactory();
+            assert.include(_js_task2.gender, a.gender);
         });
         it("Свойство catLegsCount принадлежит массиву legsCount", function() {
-            assert.include(legsCount, a.legsCount);
+            let a = _js_task2.catFactory();
+            assert.include(_js_task2.legsCount, a.legsCount);
         });
         it("Свойство catTailLength принадлежит массиву tailLength", function() {
-            assert.include(tailLength, a.tailLength);
+            let a = _js_task2.catFactory();
+            assert.include(_js_task2.tailLength, a.tailLength);
         });
 
     });

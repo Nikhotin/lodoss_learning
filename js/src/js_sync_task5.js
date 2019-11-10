@@ -1,13 +1,9 @@
-export {nameStats};
-
-import {catsArr} from './js_sync_task4';
-import {getNames} from './js_sync_task4';
+let _js_task4 = require('./js_sync_task4');
 
 
-
-function nameStats (catsArr){
-    let set = new Set(getNames(catsArr));
-    let namesList = getNames(catsArr);
+function nameStats() {
+    let set = new Set(_js_task4.getNames(_js_task4.catsArr));
+    let namesList = _js_task4.getNames(_js_task4.catsArr);
     let namesAmount = [];
     let catAmount = {};
 
@@ -31,4 +27,4 @@ function nameStats (catsArr){
     return namesAmount
 }
 
-console.log(nameStats(catsArr));
+module.exports.nameStats = nameStats;
