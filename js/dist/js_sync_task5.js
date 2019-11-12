@@ -1,39 +1,23 @@
 'use strict';
 
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-exports.nameStats = undefined;
+var jsTask4 = require('./js_sync_task4');
 
-var _js_sync_task = require('./js_sync_task4');
-
-exports.nameStats = nameStats;
-
-
-function nameStats(catsArr) {
-    var set = new Set((0, _js_sync_task.getNames)(catsArr));
-    var namesList = (0, _js_sync_task.getNames)(catsArr);
-    var namesAmount = [];
+function nameStats() {
+    var namesList = jsTask4.getNames(jsTask4.catsArr);
     var catAmount = {};
 
-    set.forEach(function (elem) {
-        var counter = 0;
-        namesList.forEach(function (value) {
-            if (elem == value) {
-                counter++;
-            }
-            return counter;
-        });
+    namesList.forEach(function (elem) {
+        if (Object.keys(catAmount).join(';').includes(elem)) {
 
-        catAmount = {
-            Name: elem,
-            Amount: counter
-        };
-
-        namesAmount.push(catAmount);
+            catAmount[elem] += 1;
+        } else {
+            catAmount[elem] = 1;
+        }
     });
 
-    return namesAmount;
+    return catAmount;
 }
 
-console.log(nameStats(_js_sync_task.catsArr));
+module.exports = {
+    nameStats: nameStats
+};

@@ -1,44 +1,18 @@
 'use strict';
 
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-exports.catsArr = exports.youngestCatsW = exports.oldestCatsM = exports.getNames = exports.findGenderW = exports.findGenderM = undefined;
-
-var _js_sync_task = require('./js_sync_task3');
-
-exports.findGenderM = findGenderM;
-exports.findGenderW = findGenderW;
-exports.getNames = getNames;
-exports.oldestCatsM = oldestCatsM;
-exports.youngestCatsW = youngestCatsW;
-exports.catsArr = catsArr;
-
-
-var catsArr = (0, _js_sync_task.catsGroupGenerate)(999);
+var jsTask3 = require('./js_sync_task3');
+var catsArr = jsTask3.catsGroupGenerate(999);
 
 function findGenderM(catsArr) {
-    var findObj = { gender: 'M' };
-
-    var result = catsArr.filter(function (cat) {
-        return Object.keys(findObj).every(function (key) {
-            return cat[key] === findObj[key];
-        });
+    return catsArr.filter(function (cat) {
+        return cat.gender == 'M';
     });
-
-    return result;
 }
 
 function findGenderW(catsArr) {
-    var findObj = { gender: 'W' };
-
-    var result = catsArr.filter(function (cat) {
-        return Object.keys(findObj).every(function (key) {
-            return cat[key] === findObj[key];
-        });
+    return catsArr.filter(function (cat) {
+        return cat.gender == 'W';
     });
-
-    return result;
 }
 
 function getNames(catsArr) {
@@ -48,58 +22,29 @@ function getNames(catsArr) {
         var catName = Object.values(item)[0];
         catsNames.push(catName);
     });
-
     return catsNames;
 }
 
 function oldestCatsM(catsArr, n) {
     var oldestCatsList = [];
-    var findObj = { gender: 'M' };
-
-    var result = catsArr.filter(function (cat) {
-        return Object.keys(findObj).every(function (key) {
-            return cat[key] === findObj[key];
-        });
-    });
-
-    var catSort = result.sort(function (a, b) {
+    oldestCatsList = catsArr.filter(function (cat) {
+        return cat.gender == 'M';
+    }).sort(function (a, b) {
         return b.age - a.age;
-    });
-
-    while (n > 0) {
-        var oldCat = catSort.shift();
-        oldestCatsList.push(oldCat);
-        n--;
-    }
-
+    }).slice(0, n);
     return oldestCatsList;
 }
 
 function youngestCatsW(catsArr, n) {
     var youngestCatsList = [];
-    var findObj = { gender: 'W' };
-
-    var result = catsArr.filter(function (cat) {
-        return Object.keys(findObj).every(function (key) {
-            return cat[key] === findObj[key];
-        });
-    });
-
-    var catSort = result.sort(function (a, b) {
-        return b.age - a.age;
-    });
-
-    while (n > 0) {
-        var oldCat = catSort.pop();
-        youngestCatsList.push(oldCat);
-        n--;
-    }
-
+    youngestCatsList = catsArr.filter(function (cat) {
+        return cat.gender == 'W';
+    }).sort(function (a, b) {
+        return a.age - b.age;
+    }).slice(0, n);
     return youngestCatsList;
 }
 
-console.log(catsArr);
-console.log(findGenderM(catsArr));
-console.log(getNames(catsArr));
-console.log(oldestCatsM(catsArr, 10));
-console.log(youngestCatsW(catsArr, 10));
+module.exports = {
+    catsArr: catsArr, findGenderM: findGenderM, findGenderW: findGenderW, getNames: getNames, oldestCatsM: oldestCatsM, youngestCatsW: youngestCatsW
+};

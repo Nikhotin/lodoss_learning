@@ -1,5 +1,5 @@
-var assert = require('chai').assert;
-var _js_task4 = require('../src/js_sync_task4');
+const assert = require('chai').assert;
+const jsTask4 = require('../src/js_sync_task4');
 
 
 describe("findGenderM", function() {
@@ -7,14 +7,12 @@ describe("findGenderM", function() {
     describe("Принадлежат ли все отсортированные коты гендеру М", function() {
         
         it("Все отсортированные элементы принадлежат гендеру M", function() {
-            let result = _js_task4.findGenderM(_js_task4.catsArr);
-            let counter = result.length;
+            let result = jsTask4.findGenderM(jsTask4.catsArr);
 
-            while(counter > 0){
-                let a = result[counter-1];
-                assert.equal(a.gender, 'M');
-                counter--
-            }
+            result.forEach(function(value){
+                assert.equal(value.gender, 'M');
+            });
+
         });
 
     });
@@ -26,14 +24,12 @@ describe("findGenderW", function() {
     describe("Принадлежат ли все отсортированные коты гендеру W", function() {
         
         it("Все отсортированные элементы принадлежат гендеру W", function() {
-            let result = _js_task4.findGenderW(_js_task4.catsArr);
-            let counter = result.length;
+            let result = jsTask4.findGenderW(jsTask4.catsArr);
     
-            while(counter > 0){
-                let a = result[counter-1];
-                assert.equal(a.gender, 'W');
-                counter--
-            }
+            result.forEach(function(value){
+                assert.equal(value.gender, 'W');
+            });
+
         });
     
     });
@@ -45,8 +41,8 @@ describe("getNames", function() {
     describe("Количество имен соответствует количеству элементов массива", function() {
         
         it("Количества совпадают", function() {
-            let result = _js_task4.getNames(_js_task4.catsArr);
-            let counter = _js_task4.catsArr.length;
+            let result = jsTask4.getNames(jsTask4.catsArr);
+            let counter = jsTask4.catsArr.length;
 
             assert.equal(result.length, counter);
 
@@ -57,11 +53,11 @@ describe("getNames", function() {
     describe("Отобранные имена соответствуют именам в массиве объектов", function() {
         
         it("Имена совпали", function() {
-            let result = _js_task4.getNames(_js_task4.catsArr);
+            let result = jsTask4.getNames(jsTask4.catsArr);
             let counter = result.length;
     
             while(counter > 0){
-                let a = _js_task4.catsArr[counter-1];
+                let a = jsTask4.catsArr[counter-1];
                 assert.equal(a.name, result[counter-1]);
                 counter--
             }
@@ -79,7 +75,7 @@ describe("oldestCatsM", function() {
         it("Элементы расположены в нужном порядке и их количество верно", function() {
             let n = 25;
             while(n > 0) {
-                let result = _js_task4.oldestCatsM(_js_task4.catsArr, n);
+                let result = jsTask4.oldestCatsM(jsTask4.catsArr, n);
                 let counter = result.length;
 
                 assert.equal(counter, n);
@@ -108,7 +104,7 @@ describe("youngestCatW", function() {
         it("Элементы расположены в нужном порядке и их количество верно", function() {
             let n = 25;
             while(n > 0) {
-                let result = _js_task4.youngestCatsW(_js_task4.catsArr, n);
+                let result = jsTask4.youngestCatsW(jsTask4.catsArr, n);
                 let counter = result.length;
 
                 assert.equal(counter, n);

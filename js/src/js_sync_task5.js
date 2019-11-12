@@ -1,30 +1,22 @@
-let _js_task4 = require('./js_sync_task4');
-
+const jsTask4 = require('./js_sync_task4');
 
 function nameStats() {
-    let set = new Set(_js_task4.getNames(_js_task4.catsArr));
-    let namesList = _js_task4.getNames(_js_task4.catsArr);
-    let namesAmount = [];
+    let namesList = jsTask4.getNames(jsTask4.catsArr);
     let catAmount = {};
 
-    set.forEach(function(elem){
-        let counter = 0;
-        namesList.forEach(function(value){
-            if(elem == value){
-                counter++
-            }
-            return counter
-        })
+    namesList.forEach(function(elem){
+          if (Object.keys(catAmount).join(';').includes(elem)){
+            
+            catAmount[elem] += 1;
+        } else{
+            catAmount[elem] = 1;
+        }
 
-        catAmount = {
-            Name: elem,
-            Amount: counter
-        };
+    });
 
-        namesAmount.push(catAmount)
-    })
-   
-    return namesAmount
+    return catAmount
 }
 
-module.exports.nameStats = nameStats;
+module.exports = {
+    nameStats
+}
