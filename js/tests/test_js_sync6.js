@@ -1,5 +1,5 @@
-var assert = require('chai').assert;
-var _js_task6 = require('../src/js_sync_task6');
+const assert = require('chai').assert;
+const jsTask6 = require('../src/js_sync_task6');
 
 describe("catFactory(defaults)", function() {
 
@@ -7,19 +7,19 @@ describe("catFactory(defaults)", function() {
     с заданными параметрами`, function() {
         
         it("Свойства совпадают с параметрами", function() {
-            let a = _js_task6.catFactory({name: 'Rizhik'});
+            let a = jsTask6.catFactory({name: 'Rizhik'});
             assert.equal(a.name, 'Rizhik');
 
-            a = _js_task6.catFactory({age: 3});
+            a = jsTask6.catFactory({age: 3});
             assert.equal(a.age, 3);
 
-            a = _js_task6.catFactory({gender: 'M'});
+            a = jsTask6.catFactory({gender: 'M'});
             assert.equal(a.gender, 'M');
 
-            a = _js_task6.catFactory({legsCount: 2});
+            a = jsTask6.catFactory({legsCount: 2});
             assert.equal(a.legsCount, 2);
 
-            a = _js_task6.catFactory({tailLength: '20sm'});
+            a = jsTask6.catFactory({tailLength: '20sm'});
             assert.equal(a.tailLength, '20sm');
         });
     });

@@ -1,11 +1,11 @@
-var assert = require('chai').assert;
-var _js_task3 = require('../src/js_sync_task3');
+const assert = require('chai').assert;
+const jsTask3 = require('../src/js_sync_task3');
 
 describe("catsGroupGenerate", function() {
 
     describe("Соответствие количества элементов массива параметру функции", function() {
         function makeTestEqualAmount(n){
-            let a = _js_task3.catsGroupGenerate(n).length;
+            let a = jsTask3.catsGroupGenerate(n).length;
 
             it("Количество элементов массива соответствует параметру функции", function() {
                 assert.equal(a, n);

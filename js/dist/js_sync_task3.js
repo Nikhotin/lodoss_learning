@@ -1,22 +1,19 @@
 'use strict';
 
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-exports.catsGroupGenerate = undefined;
-
-var _js_sync_task = require('./js_sync_task2');
-
-exports.catsGroupGenerate = catsGroupGenerate;
-
+var jsTask2 = require('./js_sync_task2');
 
 function catsGroupGenerate(n) {
     var catList = [];
-    var cat = (0, _js_sync_task.catFactory)();
+
     while (n > 0) {
+        var cat = jsTask2.catFactory();
         catList.push(cat);
         n--;
     }
+
     return catList;
 }
-console.log(catsGroupGenerate(5));
+
+module.exports = {
+    catsGroupGenerate: catsGroupGenerate
+};
