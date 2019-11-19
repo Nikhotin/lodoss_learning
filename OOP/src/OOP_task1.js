@@ -1,105 +1,86 @@
 class Course{
-    constructor(courseName,themeName,questionName,answerName,correct){
-        this.courses = {courseName: this.courseName=courseName, theme: [
-            {themeName: this.themeName=themeName, question: [
-                {questionName: this.questionName=questionName, answer: [
-                    {answerName:this.answerName=answerName, correct: this.correct=correct}]
-                }]
-            }]
-        };
+    constructor(courseName){
+        this.courseName = courseName;
+        this.theme = [];
     }
-    addTheme(addTheme){
-        if (addTheme != undefined){
-            this.courses.theme.push({themeName: addTheme, question: [
-                {questionName: null, answer: [
-                    {answerName: null, correct: null}]}
-                ]}
-            )
-        }
-    }
-    addQuestion(themeName, addQuestion){
-        let themeAmount = this.courses.theme.length;
-        for(themeAmount; themeAmount > 0; themeAmount--){
-            if (themeName == this.courses.theme[themeAmount-1].themeName && addQuestion != undefined){
-                this.courses.theme[themeAmount-1].question.push({questionName: addQuestion, answer: [
-                    {answerName: null, correct: null}]}
-                )
-            }
-        }
-    }
-    addAnswer(themeName, questionName, addAnswer, addCorrect){
-        let themeAmount = this.courses.theme.length;
-        for(themeAmount; themeAmount > 0; themeAmount--){
-            if (themeName == this.courses.theme[themeAmount-1].themeName && addAnswer != undefined && addCorrect != undefined){
-                let questionAmount = this.courses.theme[themeAmount-1].question.length;
-                for(questionAmount; questionAmount>0; questionAmount--){
-                    if (questionName == this.courses.theme[themeAmount-1].question[questionAmount-1].questionName)
-                    this.courses.theme[themeAmount-1].question[questionAmount-1].answer.push({answerName: addAnswer, correct: addCorrect})
-                }
-            }
-        }
-    }
-    deleteTheme(themeName){
-        let themeAmount = this.courses.theme.length;
-        for(themeAmount; themeAmount > 0; themeAmount--){
-            if (themeName == this.courses.theme[themeAmount-1].themeName){
-                this.courses.theme.splice(themeAmount-1, 1)
-            }
-        }
-    }
-    deleteQuestion(themeName, questionName){
-        let themeAmount = this.courses.theme.length;
-        for(themeAmount; themeAmount > 0; themeAmount--){
-            if (themeName == this.courses.theme[themeAmount-1].themeName){
-                let questionAmount = this.courses.theme[themeAmount-1].question.length;
-                for(questionAmount; questionAmount>0; questionAmount--){
-                    if (questionName == this.courses.theme[themeAmount-1].question[questionAmount-1].questionName)
-                    this.courses.theme[themeAmount-1].question.splice(questionAmount-1, 1)
-                }
-            }
-        }
-    }
-    deleteAnswer(themeName, questionName, answerName){
-        let themeAmount = this.courses.theme.length;
-        for(themeAmount; themeAmount > 0; themeAmount--){
-            if (themeName == this.courses.theme[themeAmount-1].themeName){
-                let questionAmount = this.courses.theme[themeAmount-1].question.length;
-                for(questionAmount; questionAmount>0; questionAmount--){
-                    if (questionName == this.courses.theme[themeAmount-1].question[questionAmount-1].questionName){
-                        let answerAmount = this.courses.theme[themeAmount-1].question[questionAmount-1].answer.length
-                        for(answerAmount; answerAmount>0; answerAmount--){
-                            if(answerName == this.courses.theme[themeAmount-1].question[questionAmount-1].answer[answerAmount-1].answerName)
-                            this.courses.theme[themeAmount-1].question[questionAmount-1].answer.splice(answerAmount-1, 1)
-                        }
-                        
-                    }
-                }
-            }
-        }
+    addTheme(theme){
+        this.theme.push(theme);
     }
 }
 
-let backEndCourse = new Course ("Back-end dev", "console", "Which command can change directory?", "cd", true);
-backEndCourse.addTheme("js");
-backEndCourse.addTheme("abc");
-backEndCourse.addQuestion("console", "Which command add new file?");
-backEndCourse.addQuestion("js", "How can you add array?");
-backEndCourse.addAnswer("console", "Which command can change directory?", "rm", false);
-backEndCourse.addAnswer("console", "Which command can change directory?", "touch", false);
-backEndCourse.addAnswer("console", "Which command can change directory?", "mkdir", false);
-backEndCourse.addAnswer("console", "Which command can change directory?", "mkdir1", false);
-backEndCourse.addAnswer("js", "How can you add array?", "let a = []", true);
-backEndCourse.addAnswer("js", "How can you add array?", "let a = {}", false);
-backEndCourse.addAnswer("js", "How can you add array?", "let a = new Array[]", false);
-backEndCourse.addAnswer("js", "How can you add array?", "let a = new Array()", true);
-backEndCourse.deleteTheme("abc");
-backEndCourse.deleteQuestion("js", null);
-backEndCourse.deleteQuestion("console", null);
-backEndCourse.deleteAnswer("js", "How can you add array?", null);
-backEndCourse.deleteAnswer("console", "Which command add new file?", null);
-backEndCourse.deleteAnswer("console", "Which command can change directory?", "mkdir1");
+class Theme{
+    constructor(themeName){
+        this.themeName = themeName;
+        this.question = [];
+    }
+    addQuestion(question){
+        this.question.push(question);
+    }
+}
 
-console.log(backEndCourse.courses.theme);
-console.log(backEndCourse.courses.theme[0]);
+class Question{
+    constructor(questionName){
+        this.questionName = questionName;
+        this.answer = [];
+    }
+    addAnswer(answer){
+        this.answer.push(answer);
+    }
+}
 
-module.exports = backEndCourse;
+class Answer{
+    constructor(answerName, correct){
+        this.answerName = answerName;
+        this.correct = (correct == undefined) ? false : correct;
+    }
+}
+
+let backEnd = new Course('Back-end');
+let js = new Theme('JS');
+let oop = new Theme('OOP');
+let cons = new Theme('Console');
+let q1JS = new Question('How chtoto tam o JS?');
+let q2JS = new Question('How chtoto tam o JS 2?');
+let q1OOP = new Question('How chtoto tam o OOOOOOOP?');
+let q2OOP = new Question('How chtoto tam o OOP 2?');
+let q1Cons = new Question('How chtoto tam o console?');
+let q2Cons = new Question('How chtoto tam o console 2?');
+let ans1q1JS = new Answer('vern otvet', true);
+let ans2q1JS = new Answer('nevern otvet');
+let ans1q2JS = new Answer('vern otvet', true);
+let ans2q2JS = new Answer('nevern otvet');
+let ans1q1OOP = new Answer('nevern otvet');
+let ans2q1OOP = new Answer('vern otvet', true);
+let ans1q2OOP = new Answer('nevern otvet');
+let ans2q2OOP = new Answer('vern otvet', true);
+let ans1q1Cons = new Answer('vern otvet', true);
+let ans2q1Cons = new Answer('nevern otvet');
+let ans1q2Cons = new Answer('nevern otvet');
+let ans2q2Cons = new Answer('nevern otvet');
+
+q1JS.addAnswer(ans1q1JS);
+q1JS.addAnswer(ans2q1JS);
+q2JS.addAnswer(ans1q2JS);
+q2JS.addAnswer(ans2q2JS);
+q1OOP.addAnswer(ans1q1OOP);
+q1OOP.addAnswer(ans2q1OOP);
+q2OOP.addAnswer(ans1q2OOP);
+q2OOP.addAnswer(ans2q2OOP);
+q1Cons.addAnswer(ans1q1Cons);
+q1Cons.addAnswer(ans2q1Cons);
+q2Cons.addAnswer(ans1q2Cons);
+q2Cons.addAnswer(ans2q2Cons);
+js.addQuestion(q1JS);
+js.addQuestion(q2JS);
+oop.addQuestion(q1OOP);
+oop.addQuestion(q2OOP);
+cons.addQuestion(q1Cons);
+cons.addQuestion(q2Cons);
+backEnd.addTheme(js);
+backEnd.addTheme(oop);
+backEnd.addTheme(cons);
+
+
+console.table(backEnd)
+
+module.exports = backEnd;
