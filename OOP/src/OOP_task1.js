@@ -80,7 +80,4 @@ backEnd.addTheme(js);
 backEnd.addTheme(oop);
 backEnd.addTheme(cons);
 
-
-console.table(backEnd)
-
 module.exports = backEnd;
