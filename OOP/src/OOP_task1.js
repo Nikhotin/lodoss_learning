@@ -1,62 +1,65 @@
-class Course{
-    constructor(courseName){
-        this.courseName = courseName;
-        this.theme = [];
-    }
-    addTheme(theme){
-        this.theme.push(theme);
-    }
+class Course {
+  constructor(courseName) {
+    this.courseName = courseName;
+    this.theme = [];
+  }
+
+  addTheme(theme) {
+    this.theme.push(theme);
+  }
 }
 
-class Theme{
-    constructor(themeName){
-        this.themeName = themeName;
-        this.question = [];
-    }
-    addQuestion(question){
-        this.question.push(question);
-    }
+class Theme {
+  constructor(themeName) {
+    this.themeName = themeName;
+    this.question = [];
+  }
+
+  addQuestion(question) {
+    this.question.push(question);
+  }
 }
 
-class Question{
-    constructor(questionName){
-        this.questionName = questionName;
-        this.answer = [];
-    }
-    addAnswer(answer){
-        this.answer.push(answer);
-    }
+class Question {
+  constructor(questionName) {
+    this.questionName = questionName;
+    this.answer = [];
+  }
+
+  addAnswer(answer) {
+    this.answer.push(answer);
+  }
 }
 
-class Answer{
-    constructor(answerName, correct){
-        this.answerName = answerName;
-        this.correct = (correct == undefined) ? false : correct;
-    }
+class Answer {
+  constructor(answerName, correct = false) {
+    this.answerName = answerName;
+    this.correct = correct;
+  }
 }
 
-let backEnd = new Course('Back-end');
-let js = new Theme('JS');
-let oop = new Theme('OOP');
-let cons = new Theme('Console');
-let q1JS = new Question('How chtoto tam o JS?');
-let q2JS = new Question('How chtoto tam o JS 2?');
-let q1OOP = new Question('How chtoto tam o OOOOOOOP?');
-let q2OOP = new Question('How chtoto tam o OOP 2?');
-let q1Cons = new Question('How chtoto tam o console?');
-let q2Cons = new Question('How chtoto tam o console 2?');
-let ans1q1JS = new Answer('vern otvet', true);
-let ans2q1JS = new Answer('nevern otvet');
-let ans1q2JS = new Answer('vern otvet', true);
-let ans2q2JS = new Answer('nevern otvet');
-let ans1q1OOP = new Answer('nevern otvet');
-let ans2q1OOP = new Answer('vern otvet', true);
-let ans1q2OOP = new Answer('nevern otvet');
-let ans2q2OOP = new Answer('vern otvet', true);
-let ans1q1Cons = new Answer('vern otvet', true);
-let ans2q1Cons = new Answer('nevern otvet');
-let ans1q2Cons = new Answer('nevern otvet');
-let ans2q2Cons = new Answer('nevern otvet');
+const backEnd = new Course('Back-end');
+const js = new Theme('JS');
+const oop = new Theme('OOP');
+const cons = new Theme('Console');
+const q1JS = new Question('How chtoto tam o JS?');
+const q2JS = new Question('How chtoto tam o JS 2?');
+const q1OOP = new Question('How chtoto tam o OOOOOOOP?');
+const q2OOP = new Question('How chtoto tam o OOP 2?');
+const q1Cons = new Question('How chtoto tam o console?');
+const q2Cons = new Question('How chtoto tam o console 2?');
+const ans1q1JS = new Answer('vern otvet', true);
+const ans2q1JS = new Answer('nevern otvet');
+const ans1q2JS = new Answer('vern otvet', true);
+const ans2q2JS = new Answer('nevern otvet');
+const ans1q1OOP = new Answer('nevern otvet');
+const ans2q1OOP = new Answer('vern otvet', true);
+const ans1q2OOP = new Answer('nevern otvet');
+const ans2q2OOP = new Answer('vern otvet', true);
+const ans1q1Cons = new Answer('vern otvet', true);
+const ans2q1Cons = new Answer('nevern otvet');
+const ans1q2Cons = new Answer('nevern otvet');
+const ans2q2Cons = new Answer('nevern otvet');
 
 q1JS.addAnswer(ans1q1JS);
 q1JS.addAnswer(ans2q1JS);
