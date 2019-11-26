@@ -10,23 +10,23 @@ var tailLength = ['10sm', '15sm', '20sm', '25sm', '30sm'];
 var loudness = ['quiet', 'medium', 'loud'];
 
 function catFactory() {
-    var catName = jsTask1.pick(name);
-    var catAge = jsTask1.pick(age);
-    var catGender = jsTask1.pick(gender);
-    var catLegsCount = jsTask1.pick(legsCount);
-    var catTailLength = jsTask1.pick(tailLength);
-    var catLoudness = jsTask1.pick(loudness);
-    var randomCat = {
-        name: catName,
-        age: catAge,
-        gender: catGender,
-        legsCount: catLegsCount,
-        tailLength: catTailLength,
-        loudness: catLoudness
-    };
-    return randomCat;
+  var catName = jsTask1.pick(name);
+  var catAge = jsTask1.pick(age);
+  var catGender = jsTask1.pick(gender);
+  var catLegsCount = jsTask1.pick(legsCount);
+  var catTailLength = jsTask1.pick(tailLength);
+  var catLoudness = jsTask1.pick(loudness);
+  var randomCat = {
+    name: catName,
+    age: catAge,
+    gender: catGender,
+    legsCount: catLegsCount,
+    tailLength: catTailLength,
+    loudness: catLoudness
+  };
+  return randomCat;
 }
 
 module.exports = {
-    catFactory: catFactory, name: name, age: age, gender: gender, legsCount: legsCount, tailLength: tailLength, loudness: loudness
+  catFactory: catFactory, name: name, age: age, gender: gender, legsCount: legsCount, tailLength: tailLength, loudness: loudness
 };
