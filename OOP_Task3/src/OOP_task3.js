@@ -100,6 +100,17 @@ class Department {
       }
     }
   }
+
+  giveProjectToStaff() {
+    let i = this.staff.length - 1;
+    const firstItem = 0;
+    for (i; i >= 0; i -= 1) {
+      if (!this.staff[i].project) {
+        this.staff[i].project = this.projects[firstItem];
+        this.projects.splice(0, 1);
+      }
+    }
+  }
 }
 
 class Developer {
