@@ -203,6 +203,12 @@ class Developer {
     }
   }
 
+  makeTest() {
+    this.daysWithOutProject = 0;
+    if (this.project.tested !== false) return;
+    this.project.tested = true;
+    this.expirience += 1;
+  }
 }
 
 class Project {
