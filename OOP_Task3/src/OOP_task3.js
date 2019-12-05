@@ -209,6 +209,15 @@ class Developer {
     this.project.tested = true;
     this.expirience += 1;
   }
+
+  helpWithProject(developer) {
+    const foreignProject = developer.project;
+    if (foreignProject.made !== false) return;
+    this.daysWithOutProject = 0;
+    foreignProject.daysToProduction -= 1;
+    this.expirience += Math.floor(10 / foreignProject.difficulty) / 10;
+    if (foreignProject.daysToProduction === 0) foreignProject.made = true;
+  }
 }
 
 class Project {
