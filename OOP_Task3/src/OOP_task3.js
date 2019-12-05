@@ -191,6 +191,18 @@ class Developer {
     this.expirience = expirience;
     this.daysWithOutProject = daysWithOutProject;
   }
+
+  makeProject() {
+    this.daysWithOutProject = 0;
+    if (this.project.made !== false) return;
+    this.project.daysToProduction -= 1;
+
+    if (this.project.daysToProduction === 0) {
+      this.project.made = true;
+      this.expirience += 1;
+    }
+  }
+
 }
 
 class Project {
