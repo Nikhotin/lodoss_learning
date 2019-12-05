@@ -74,6 +74,22 @@ class Department {
     this.projects = projects;
     this.staff = staff;
   }
+
+  giveType() {
+    return this.type;
+  }
+
+  giveStaff() {
+    return this.staff;
+  }
+
+  giveFreeDevsAmount() {
+    let freeStaffAmount = 0;
+    this.staff.forEach((dev) => {
+      if (!dev.project) freeStaffAmount += 1;
+    });
+    return freeStaffAmount;
+  }
 }
 
 class Developer {
