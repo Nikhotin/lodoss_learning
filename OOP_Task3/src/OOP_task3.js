@@ -8,6 +8,10 @@ class Firm {
     this.departments = departments;
     this.projects = projects;
   }
+
+  addDepartment(department) {
+    this.departments.push(department);
+  }
 }
 
 class Department {
