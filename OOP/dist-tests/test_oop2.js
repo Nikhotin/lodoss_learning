@@ -1,13 +1,13 @@
-'use strict';
 
-var _require = require('chai'),
-    assert = _require.assert;
+const _require = require('chai');
 
-var oopTask2 = require('../src/OOP_task2');
+const { assert } = _require;
 
-describe('Движение товара за 10 дней успешно смоделированно', function () {
-  describe('Количество товара у производителя по истечению 10 дней - верно', function () {
-    it('Метод calculateTotalProduce определяет последний элемент массива оставшихся у производителя товаров', function () {
+const oopTask2 = require('../src/OOP_task2');
+
+describe('Движение товара за 10 дней успешно смоделированно', () => {
+  describe('Количество товара у производителя по истечению 10 дней - верно', () => {
+    it('Метод calculateTotalProduce определяет последний элемент массива оставшихся у производителя товаров', () => {
       oopTask2.statistic.calculateTotalProduce({ left: [1, 2, 3, 4, 5, 6] });
       assert.equal(oopTask2.statistic.totalProduce, 6);
 
@@ -22,8 +22,8 @@ describe('Движение товара за 10 дней успешно смод
     });
   });
 
-  describe('Количество товара необходимого потребителю по истечению 10 дней - верно', function () {
-    it('Метод calculateTotalNeeds вычисляет сумму элементов массива потребностей покупателя', function () {
+  describe('Количество товара необходимого потребителю по истечению 10 дней - верно', () => {
+    it('Метод calculateTotalNeeds вычисляет сумму элементов массива потребностей покупателя', () => {
       oopTask2.statistic.calculateTotalNeeds({ needs: [1, 1, 1, 1, 1, 1] });
       assert.equal(oopTask2.statistic.totalNeeds, 6);
 
@@ -38,8 +38,8 @@ describe('Движение товара за 10 дней успешно смод
     });
   });
 
-  describe('Среднее количество доставленного товара за день - верно', function () {
-    it('Метод calculateMeanDeliver вычисляет среднее значение массива купленных у производителя товаров', function () {
+  describe('Среднее количество доставленного товара за день - верно', () => {
+    it('Метод calculateMeanDeliver вычисляет среднее значение массива купленных у производителя товаров', () => {
       oopTask2.statistic.calculateMeanDeliver({ productBought: [4, 4, 4, 4, 4, 4, 4, 4, 4] });
       assert.equal(oopTask2.statistic.meanDeliver, 4);
 
@@ -54,8 +54,8 @@ describe('Движение товара за 10 дней успешно смод
     });
   });
 
-  describe('Количество товара произведенного за последние 3 дня - верно', function () {
-    it('Метод calculateProduceLast3Days вычисляет сумму 3х последних элементов массива произведенной продукции', function () {
+  describe('Количество товара произведенного за последние 3 дня - верно', () => {
+    it('Метод calculateProduceLast3Days вычисляет сумму 3х последних элементов массива произведенной продукции', () => {
       oopTask2.statistic.calculateProduceLast3Days({ product: [1, 2, 3, 4, 5, 6] });
       assert.equal(oopTask2.statistic.produceLast3Days, 15);
 
@@ -70,8 +70,8 @@ describe('Движение товара за 10 дней успешно смод
     });
   });
 
-  describe('Количество товара доставленного за последние 3 дня - верно', function () {
-    it('Метод calculateDeliverLast3Days вычисляет сумму 3х последних элементов массива доставленной продукции', function () {
+  describe('Количество товара доставленного за последние 3 дня - верно', () => {
+    it('Метод calculateDeliverLast3Days вычисляет сумму 3х последних элементов массива доставленной продукции', () => {
       oopTask2.statistic.calculateDeliverLast3Days({ productBought: [80, 120, 30, 1, 49, 150] });
       assert.equal(oopTask2.statistic.deliverLast3Days, 200);
 
@@ -86,41 +86,41 @@ describe('Движение товара за 10 дней успешно смод
     });
   });
 
-  describe('КПД посредника - верно', function () {
-    it('Метод calculateKpiDeliverman извлекает целую часть из частного проданной продукции на привезенную продукцию', function () {
+  describe('КПД посредника - верно', () => {
+    it('Метод calculateKpiDeliverman извлекает целую часть из частного проданной продукции на привезенную продукцию', () => {
       oopTask2.statistic.calculateKpiDeliverman({
         productBought: [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-        left: [2, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+        left: [2, 0, 0, 0, 0, 0, 0, 0, 0, 0],
       });
       assert.equal(oopTask2.statistic.kpiDeliverman, '80%');
 
       oopTask2.statistic.calculateKpiDeliverman({
         productBought: [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-        left: [2, 0, 1, 0, 1]
+        left: [2, 0, 1, 0, 1],
       });
       assert.equal(oopTask2.statistic.kpiDeliverman, '60%');
 
       oopTask2.statistic.calculateKpiDeliverman({
         productBought: [],
-        left: []
+        left: [],
       });
       assert.equal(oopTask2.statistic.kpiDeliverman, '0%');
 
       oopTask2.statistic.calculateKpiDeliverman({
         productBought: [1, 1, 1],
-        left: [2, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+        left: [2, 0, 0, 0, 0, 0, 0, 0, 0, 0],
       });
       assert.equal(oopTask2.statistic.kpiDeliverman, '33%');
 
       oopTask2.statistic.calculateKpiDeliverman({
         productBought: [0],
-        left: [1, 3, 4, 100]
+        left: [1, 3, 4, 100],
       });
       assert.equal(oopTask2.statistic.kpiDeliverman, '0%');
 
       oopTask2.statistic.calculateKpiDeliverman({
         productBought: [1, 1, 1],
-        left: [0]
+        left: [0],
       });
       assert.equal(oopTask2.statistic.kpiDeliverman, '100%');
     });
