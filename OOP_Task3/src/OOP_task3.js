@@ -90,6 +90,16 @@ class Department {
     });
     return freeStaffAmount;
   }
+
+  sendProjectsToTests(department) {
+    let i = this.projects.length - 1;
+    for (i; i >= 0; i -= 1) {
+      if (this.projects[i].made === true) {
+        department.projects.push(this.projects[i]);
+        this.projects.splice(i, 1);
+      }
+    }
+  }
 }
 
 class Developer {
