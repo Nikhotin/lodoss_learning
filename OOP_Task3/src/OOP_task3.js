@@ -43,6 +43,29 @@ class Firm {
       this.giveProject(department);
     }
   }
+
+  hiringStaff(department) {
+    const typeDepartment = department.giveType();
+    if (typeDepartment !== 'QA') {
+      const firmsProjects = this.projects;
+      const freeDevsAmount = department.giveFreeDevsAmount();
+      let i = firmsProjects.length - freeDevsAmount - 1;
+      for (i; i >= 0; i -= 1) {
+        if (typeDepartment === firmsProjects[i].type) {
+          const developer = new Developer(typeDepartment);
+          department.staff.push(developer);
+        }
+      }
+    } else {
+      const firmsProjects = this.projects;
+      const freeDevsAmount = department.giveFreeDevsAmount();
+      let i = firmsProjects.length - freeDevsAmount - 1;
+      for (i; i >= 0; i -= 1) {
+        const developer = new Developer(typeDepartment);
+        department.staff.push(developer);
+      }
+    }
+  }
 }
 
 class Department {
