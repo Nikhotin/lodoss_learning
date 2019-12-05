@@ -218,6 +218,12 @@ class Developer {
     this.expirience += Math.floor(10 / foreignProject.difficulty) / 10;
     if (foreignProject.daysToProduction === 0) foreignProject.made = true;
   }
+
+  giveСompletedProject() {
+    const comletedProject = this.project;
+    this.project = null;
+    return comletedProject;
+  }
 }
 
 class Project {
