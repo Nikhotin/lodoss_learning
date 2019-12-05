@@ -36,6 +36,13 @@ class Firm {
       }
     });
   }
+
+  giveProjectsToFreeDevs(department) {
+    let freeDevsAmount = department.giveFreeDevsAmount();
+    for (freeDevsAmount; freeDevsAmount > 0; freeDevsAmount -= 1) {
+      this.giveProject(department);
+    }
+  }
 }
 
 class Department {
