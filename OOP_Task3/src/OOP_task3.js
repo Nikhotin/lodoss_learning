@@ -111,6 +111,68 @@ class Department {
       }
     }
   }
+
+  organizeWork() {
+    if (this.type === 'QA') {
+      let i = this.staff.length - 1;
+      for (i; i >= 0; i -= 1) {
+        if (this.staff[i].project) {
+          this.staff[i].makeTest();
+        } else {
+          this.staff[i].daysWithOutProject += 1;
+          return;
+        }
+        const completedProject = this.staff[i].giveСompletedProject();
+        this.projects.push(completedProject);
+      }
+    } else if (this.type === 'Mobile') {
+      let i = this.staff.length - 1;
+      for (i; i >= 0; i -= 1) {
+        if (this.staff[i].project) {
+          this.staff[i].makeProject();
+        } else {
+          this.staff[i].daysWithOutProject += 1;
+          return;
+        }
+        if (this.staff[i].project.made !== false) {
+          const completedProject = this.staff[i].giveСompletedProject();
+          this.projects.push(completedProject);
+        }
+      }
+      i = this.staff.length - 1;
+      for (i; i >= 0; i -= 1) {
+        if (this.staff[i].project) {
+          let needDevAmount = this.staff[i].project.daysToProduction;
+          let counter = this.staff.length - 1;
+          for (counter; counter >= 0; counter -= 1) {
+            if (!this.staff[counter].project) {
+              this.staff[counter].helpWithProject(this.staff[i]);
+              needDevAmount -= 1;
+              if (needDevAmount === 0) {
+                const completedProject = this.staff[i].giveСompletedProject();
+                this.projects.push(completedProject);
+                counter = -1;
+              }
+            }
+          }
+        }
+      }
+    } else {
+      let i = this.staff.length - 1;
+      for (i; i >= 0; i -= 1) {
+        if (this.staff[i].project) {
+          this.staff[i].makeProject();
+        } else {
+          this.staff[i].daysWithOutProject += 1;
+          return;
+        }
+        if (this.staff[i].project.made !== false) {
+          const completedProject = this.staff[i].giveСompletedProject();
+          this.projects.push(completedProject);
+        }
+      }
+    }
+  }
 }
 
 class Developer {
