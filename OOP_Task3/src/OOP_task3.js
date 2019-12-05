@@ -24,6 +24,18 @@ class Firm {
       this.projects.push(project);
     }
   }
+
+  giveProject(department) {
+    const typeDepartment = department.giveType();
+    const firmsProjects = this.projects;
+    firmsProjects.forEach((proj, i) => {
+      if (typeDepartment === proj.type) {
+        department.projects.push(proj);
+        firmsProjects.splice(i, 1);
+        return undefined;
+      }
+    });
+  }
 }
 
 class Department {
