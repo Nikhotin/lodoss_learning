@@ -12,6 +12,18 @@ class Firm {
   addDepartment(department) {
     this.departments.push(department);
   }
+
+  getProjects(min, max) {
+    const typeProject = ['Web', 'Mobile'];
+    const difficultyProject = [1, 2, 3];
+    let projectsAmount = randInt(min, max);
+    for (projectsAmount; projectsAmount > 0; projectsAmount -= 1) {
+      const type = typeProject[randInt(0, 1)];
+      const difficulty = difficultyProject[randInt(0, 2)];
+      const project = new Project(type, difficulty);
+      this.projects.push(project);
+    }
+  }
 }
 
 class Department {
