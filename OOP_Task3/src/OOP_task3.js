@@ -173,6 +173,15 @@ class Department {
       }
     }
   }
+
+  dismissUselessDeveloper(trash) {
+    const uselessDev = this.staff.filter((developer) => developer.daysWithOutProject >= 3).sort((a, b) => a.expirience - b.expirience).splice(0, 1);
+    const i = this.staff.findIndex((developer) => developer === uselessDev[0]);
+    if (i !== -1) {
+      trash.staff.push(this.staff.splice(i, 1)[0]);
+    }
+    return null;
+  }
 }
 
 class Developer {
