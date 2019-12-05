@@ -254,3 +254,56 @@ class Trash {
     this.projects = this.projects.concat(garbage);
   }
 }
+
+const google = new Firm('Sergey Brin');
+const webDepartment = new Department('Web');
+const mobileDepartment = new Department('Mobile');
+const qaDepartment = new Department('QA');
+const trash = new Trash();
+
+function simulation(daysAmount) {
+  let counter = daysAmount;
+  google.addDepartment(webDepartment);
+  google.addDepartment(mobileDepartment);
+  google.addDepartment(qaDepartment);
+  google.getProjects(0, 4);
+
+  for (counter; counter > 0; counter -= 1) {
+    google.hiringStaff(webDepartment);
+    google.hiringStaff(mobileDepartment);
+    google.hiringStaff(qaDepartment);
+    google.giveProjectsToFreeDevs(webDepartment);
+    google.giveProjectsToFreeDevs(mobileDepartment);
+    webDepartment.sendProjectsToTests(qaDepartment);
+    mobileDepartment.sendProjectsToTests(qaDepartment);
+    webDepartment.giveProjectToStaff();
+    mobileDepartment.giveProjectToStaff();
+    qaDepartment.giveProjectToStaff();
+    webDepartment.organizeWork();
+    mobileDepartment.organizeWork();
+    qaDepartment.organizeWork();
+    webDepartment.dismissUselessDeveloper(trash);
+    mobileDepartment.dismissUselessDeveloper(trash);
+    qaDepartment.dismissUselessDeveloper(trash);
+    google.getProjects(0, 4);
+    trash.collectDeletedProject(qaDepartment);
+  }
+  console.table(google.projects);
+  console.table(qaDepartment.staff);
+  console.table(qaDepartment.projects);
+  console.table(webDepartment.staff);
+  console.table(webDepartment.projects);
+  console.table(mobileDepartment.staff);
+  console.table(mobileDepartment.projects);
+  console.log(trash.staff);
+}
+
+simulation(100);
+
+module.exports = {
+  google,
+  webDepartment,
+  mobileDepartment,
+  qaDepartment,
+  trash,
+};
