@@ -241,4 +241,16 @@ class Trash {
     this.projects = projects;
     this.staff = staff;
   }
+
+  collectDeletedProject(department) {
+    const garbage = [];
+    department.projects.forEach((completedProj, i) => {
+      const proj = completedProj;
+      if (proj.tested === true) {
+        garbage.push(proj);
+        department.projects.splice(i, 1);
+      }
+    });
+    this.projects = this.projects.concat(garbage);
+  }
 }
