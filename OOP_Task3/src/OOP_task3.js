@@ -3,10 +3,10 @@ function randInt(min, max) {
   return Math.floor(rand);
 }
 class Firm {
-  constructor(directorName, departments = [], projects = []) {
+  constructor(directorName, departments, projects) {
     this.director = directorName;
-    this.departments = departments;
-    this.projects = projects;
+    this.departments = departments || [];
+    this.projects = projects || [];
   }
 
   addDepartment(department) {
@@ -81,10 +81,10 @@ class Firm {
 }
 
 class Department {
-  constructor(type, projects = [], staff = []) {
+  constructor(type, projects, staff) {
     this.type = type;
-    this.projects = projects;
-    this.staff = staff;
+    this.projects = projects || [];
+    this.staff = staff || [];
   }
 
   giveType() {
@@ -219,11 +219,11 @@ class Department {
 }
 
 class Developer {
-  constructor(type, project = null, expirience = 0, daysWithOutProject = 0) {
+  constructor(type, project, expirience, daysWithOutProject) {
     this.type = type;
-    this.project = project;
-    this.expirience = expirience;
-    this.daysWithOutProject = daysWithOutProject;
+    this.project = project || null;
+    this.expirience = expirience || 0;
+    this.daysWithOutProject = daysWithOutProject || 0;
   }
 
   makeProject() {
@@ -261,19 +261,19 @@ class Developer {
 }
 
 class Project {
-  constructor(type, difficulty, made = false, tested = false) {
+  constructor(type, difficulty, made, tested) {
     this.type = type;
     this.difficulty = difficulty;
     this.daysToProduction = this.difficulty;
-    this.made = made;
-    this.tested = tested;
+    this.made = made || false;
+    this.tested = tested || false;
   }
 }
 
 class Trash {
-  constructor(projects = [], staff = []) {
-    this.projects = projects;
-    this.staff = staff;
+  constructor(projects, staff) {
+    this.projects = projects || [];
+    this.staff = staff || [];
   }
 
   collectDeletedProject(department) {
