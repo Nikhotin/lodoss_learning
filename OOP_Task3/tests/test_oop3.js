@@ -1,5 +1,5 @@
 const { assert } = require('chai');
-const oopTask3 = require('../src/OOP_task3_1');
+const oopTask3 = require('../src/OOP_task3');
 
 describe('Проверка методов классов Firm', () => {
   describe('Метод addDepartment(department)', () => {
