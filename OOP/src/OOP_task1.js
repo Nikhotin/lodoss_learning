@@ -83,4 +83,6 @@ backEnd.addTheme(js);
 backEnd.addTheme(oop);
 backEnd.addTheme(cons);
 
+console.log(backEnd.theme[2].question[0]);
+
 module.exports = backEnd;

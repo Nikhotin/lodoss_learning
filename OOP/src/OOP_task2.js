@@ -175,11 +175,6 @@ class Statistic {
   }
 
   calculateKpiDeliverman(deliver) {
-    if (deliver.productBought === undefined || deliver.productBought === 0) {
-      this.kpiDeliverman = `${0}%`;
-      return;
-    }
-
     let totalProductBought = 0;
     let totalLeft = 0;
     let i = deliver.productBought.length;
@@ -192,6 +187,9 @@ class Statistic {
     }
 
     this.kpiDeliverman = `${Math.floor(((totalProductBought - totalLeft) / totalProductBought) * 100)}%`;
+    if (this.kpiDeliverman === 'NaN%' || this.kpiDeliverman === '-Infinity%') {
+      this.kpiDeliverman = '0%';
+    }
   }
 }
 
