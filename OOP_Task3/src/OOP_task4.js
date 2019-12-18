@@ -1,7 +1,35 @@
+class Employee {
+  create(type) {
+    if (type === 'QA') {
+      return new Developer('QA');
+    }
+    if (type === 'Web') {
+      return new Developer('Web');
+    }
+    if (type === 'Mobile') {
+      return new Developer('Mobile');
+    }
+  }
+}
+
 function randInt(min, max) {
   const rand = min + Math.random() * (max + 1 - min);
   return Math.floor(rand);
 }
+
+class FindProject {
+  create() {
+    const typeProject = ['Web', 'Mobile'];
+    const difficultyProject = [1, 2, 3];
+    const type = typeProject[randInt(0, 1)];
+    const difficulty = difficultyProject[randInt(0, 2)];
+    if (type === 'Web') {
+      return new Project(type, difficulty);
+    }
+    return new Project(type, difficulty);
+  }
+}
+
 class Firm {
   constructor(directorName, departments, projects) {
     this.director = directorName;
@@ -14,11 +42,8 @@ class Firm {
   }
 
   generateProject() {
-    const typeProject = ['Web', 'Mobile'];
-    const difficultyProject = [1, 2, 3];
-    const type = typeProject[randInt(0, 1)];
-    const difficulty = difficultyProject[randInt(0, 2)];
-    const project = new Project(type, difficulty);
+    const factory = new FindProject();
+    const project = factory.create();
     this.projects.push(project);
   }
 
@@ -51,9 +76,10 @@ class Firm {
   hiringStaffForQA(department) {
     const firmsProjects = this.projects;
     const freeDevsAmount = department.getFreeDevsAmount();
+    const factory = new Employee();
     let i = firmsProjects.length - freeDevsAmount - 1;
     for (i; i >= 0; i -= 1) {
-      const developer = new Developer('QA');
+      const developer = factory.create('QA');
       department.staff.push(developer);
     }
   }
@@ -61,10 +87,11 @@ class Firm {
   hiringStaffForDev(department, typeDepartment) {
     const firmsProjects = this.projects;
     const freeDevsAmount = department.getFreeDevsAmount();
+    const factory = new Employee();
     let i = firmsProjects.length - freeDevsAmount - 1;
     for (i; i >= 0; i -= 1) {
       if (typeDepartment === firmsProjects[i].type) {
-        const developer = new Developer(typeDepartment);
+        const developer = factory.create(typeDepartment);
         department.staff.push(developer);
       }
     }
