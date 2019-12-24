@@ -8,29 +8,29 @@ function randInt(min, max) {
   return Math.floor(rand);
 }
 
-function createBasicBot(str) {
+function createBasicBot() {
   const myEmitter = new EventEmitter();
-  let result;
+
   myEmitter.on('Hello', () => {
     const greeting = greetings[randInt(0, 2)];
-    result = greeting;
+    myEmitter.lastResult = greeting;
     console.log(`-${greeting}`);
   });
-
   myEmitter.on('How are you?', () => {
     const feeling = feelings[randInt(0, 2)];
-    result = feeling;
     console.log(`-${feeling}`);
   });
 
   myEmitter.on('What are you doing?', () => {
     const business = businesses[randInt(0, 3)];
-    result = business;
     console.log(`-${business}`);
   });
-  myEmitter.emit(str);
-  return result;
+
+  return myEmitter;
 }
+
+const bot = createBasicBot();
+console.log(bot.emit('Hello'));
 
 module.exports = {
   createBasicBot,
