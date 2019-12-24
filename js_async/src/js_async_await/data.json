@@ -1,0 +1,64 @@
+{
+  "course": "Back-end",
+  "theme": [
+    {"themeName": "JS", 
+      "question": [
+        {"questionName": "How chtoto tam o JS?",
+        "answer": [
+          {"answerName": "vern otvet",
+          "correct": true},
+          {"answerName": "nevern otvet",
+          "correct": false}
+        ]
+      },
+      {"questionName": "How chtoto tam o JS 2?",
+        "answer": [
+          {"answerName": "vern otvet",
+          "correct": true},
+          {"answerName": "nevern otvet",
+          "correct": false}
+        ]
+      }
+    ]},
+    
+    {"themeName": "OOP", 
+      "question": [
+        {"questionName": "How chtoto tam o OOP?",
+        "answer": [
+          {"answerName": "nevern otvet",
+            "correct": false},
+          {"answerName": "vern otvet",
+          "correct": true}
+        ]
+      },
+      {"questionName": "How chtoto tam o OOP 2?",
+        "answer": [
+          {"answerName": "vern otvet",
+          "correct": true},
+          {"answerName": "nevern otvet",
+          "correct": false}
+        ]
+      }
+    ]},
+
+    {"themeName": "console", 
+      "question": [
+        {"questionName": "How chtoto tam o console?",
+        "answer": [          
+          {"answerName": "vern otvet",
+          "correct": true},
+          {"answerName": "nevern otvet",
+          "correct": false}
+        ]
+      },
+      {"questionName": "How chtoto tam o console 2?",
+        "answer": [
+          {"answerName": "vern otvet",
+          "correct": true},
+          {"answerName": "nevern otvet",
+          "correct": false}
+        ]
+      }
+    ]}
+  ]
+}
