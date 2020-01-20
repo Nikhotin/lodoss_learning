@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js"></script>
+    <meta charset="UTF-8">
+  </head>
+
+  <body>
+    <h1>Название курса: {{course}}</h1>
+      {{#theme}}
+      <h2>Тема: {{themeName}}</h2>
+        <ul>
+          {{#question}}
+          <h3>Вопрос: {{questionName}}</h3>
+            {{#answer}}
+            <b><i>Ответ: {{answerName}}</i></b>
+            <li>
+              Формулировка: {{answerName}};
+            </li>
+            <li>
+              Корректность: {{correct}} .
+            </li>
+            {{/answer}}
+          {{/question}}
+        </ul>
+      {{/theme}}
+  </body>
+
+</html>

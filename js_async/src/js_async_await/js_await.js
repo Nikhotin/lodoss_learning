@@ -21,15 +21,11 @@ function writefile(path, out) {
   });
 }
 
-function createHtml(dataPath, templatePath, outputPath) {
-  return Promise
-    .resolve()
-    .then(() => readfile(templatePath))
-    .then((template) => readfile(dataPath)
-      .then((data) => mustache.render(template, JSON.parse(data))))
-    .then((output) => {
-      writefile(outputPath, output);
-    });
-}
+const createHTML = async (dataPath, templatePath, outputPath) => {
+  const template = await readfile(templatePath);
+  const data = await readfile(dataPath);
+  const output = mustache.render(template, JSON.parse(data));
+  writefile(outputPath, output);
+};
 
-createHtml('./data.json', './template.txt', './output.html');
+createHTML('./data.json', './template.txt', 'output.html');
