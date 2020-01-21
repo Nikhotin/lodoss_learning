@@ -22,11 +22,15 @@ function writefile(path, out) {
 }
 
 function createHtml(dataPath, templatePath, outputPath) {
+  let template;
   return Promise
     .resolve()
     .then(() => readfile(templatePath))
-    .then((template) => readfile(dataPath)
-      .then((data) => mustache.render(template, JSON.parse(data))))
+    .then((_template) => {
+      template = _template;
+      return readfile(dataPath);
+    })
+    .then((data) => mustache.render(template, JSON.parse(data)))
     .then((output) => {
       writefile(outputPath, output);
     });
