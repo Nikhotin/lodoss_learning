@@ -1,0 +1,37 @@
+body {
+  font: 16px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+a{
+  text-decoration: none;
+}
+
+.topic{
+  text-align: center;
+  color: rgb(34, 34, 34);
+  margin-top: 5px;
+  margin-bottom: 10px;
+}
+
+#topic_notes{
+  font-size: 48px;
+}
+
+.header{
+  width: 100%;
+  display: table;
+  background-color: rgb(116, 147, 255);
+}
+
+.button{
+  height: 50px;
+  width: 200px;
+  text-align: center;
+  color: rgb(255, 251, 236);
+  display: table-cell;
+  vertical-align: middle;
+}
+
+#active{
+  background-color: rgb(74, 113, 255);
+}

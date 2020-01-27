@@ -1,0 +1,12 @@
+extends layout
+
+.header
+  block header
+    a.button(href="http://google.com") Notes
+    a.button(href="http://google.com") News
+    a.button(href="http://google.com") Features
+
+block content
+  h1= message
+  h2= error.status
+  pre #{error.stack}
