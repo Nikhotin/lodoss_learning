@@ -5,5 +5,11 @@ extends layout
     a.button(href="/notes") Notes
     a.button#active(href="/news") News
     a.button(href="/features") Features
-block content
-
+.sidebar-left
+.main
+  block main
+    p Content
+.sidebar-right
+.footer
+  block footer
+    p Footer

@@ -1,9 +1,16 @@
 extends layout
 
+
 .header
   block header
     a.button(href="/notes") Notes
     a.button(href="/news") News
     a.button#active(href="/features") Features
-block content
-
+.sidebar-left
+.main
+  block main
+    p Content
+.sidebar-right
+.footer
+  block footer
+    p Footer

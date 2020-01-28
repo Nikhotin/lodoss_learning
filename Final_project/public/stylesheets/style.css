@@ -1,18 +1,28 @@
+* {
+	margin: 0;
+	padding: 0;
+}
+html,
 body {
   font: 16px "Lucida Grande", Helvetica, Arial, sans-serif;
+  height: 100%;
+  color: rgb(45, 45, 45);
 }
 
 a{
   text-decoration: none;
 }
+#active{
+  background-color: rgb(74, 113, 255);
+}
+
 
 .topic{
   text-align: center;
-  color: rgb(34, 34, 34);
+  color: rgb(45, 45, 45);
   margin-top: 5px;
   margin-bottom: 10px;
 }
-
 #topic_notes{
   font-size: 48px;
 }
@@ -23,6 +33,35 @@ a{
   background-color: rgb(116, 147, 255);
 }
 
+.sidebar-left{
+  float:left;
+  width:5%;
+  background-color: white;
+}
+
+.main{
+  float:left;
+  width:90%;
+  background-color: rgb(247, 247, 247);
+}
+
+.sidebar-right{
+  float:left;
+  width:5%;
+  background-color: white;
+}
+
+.sidebar-left, .main, .sidebar-right{
+  min-height: 1000px				
+}
+.footer {
+  clear:both;
+  height: 50px;
+  width: 100%;
+  text-align: center;
+  background-color: rgb(235, 235, 235);
+}
+
 .button{
   height: 50px;
   width: 200px;
@@ -30,8 +69,4 @@ a{
   color: rgb(255, 251, 236);
   display: table-cell;
   vertical-align: middle;
-}
-
-#active{
-  background-color: rgb(74, 113, 255);
 }
