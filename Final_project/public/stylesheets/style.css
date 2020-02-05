@@ -52,7 +52,7 @@ a{
 }
 
 .sidebar-left, .main, .sidebar-right{
-  min-height: 1000px				
+  min-height: 85%;				
 }
 .footer {
   clear:both;
