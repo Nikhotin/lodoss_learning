@@ -1,4 +1,3 @@
-
 CREATE OR REPLACE FUNCTION updateNotesCount() RETURNS TRIGGER AS $$
 DECLARE
 	usrid int;

@@ -6,7 +6,6 @@
       "host": "localhost",
       "database": "notes",
       "port": "5432",
-      "ssl": "true",
       "schema": "my_schema"
     }, "sql-file": true
   }
