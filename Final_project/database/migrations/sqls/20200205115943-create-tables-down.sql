@@ -1,1 +1,1 @@
-DROP TABLE users, likes, notes, hashtags
+DROP TABLE users, likes, notes, hashtags;

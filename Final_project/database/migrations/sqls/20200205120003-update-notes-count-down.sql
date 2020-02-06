@@ -1,1 +1,1 @@
-DROP TRIGGER update_notes_count ON Notes CASCADE
+DROP TRIGGER update_notes_count ON Notes CASCADE;
