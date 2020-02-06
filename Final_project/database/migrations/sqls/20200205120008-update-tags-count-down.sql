@@ -1,1 +1,1 @@
-DROP TRIGGER update_tags_count ON Notes CASCADE
+DROP TRIGGER update_tags_count ON Hashtags CASCADE;

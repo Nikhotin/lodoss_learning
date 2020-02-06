@@ -5,7 +5,6 @@
       "password": "q1q1",
       "host": "localhost",
       "database": "notes",
-      "port": "5432",
-      "schema": "my_schema"
+      "port": "5432"
     }, "sql-file": true
   }
