@@ -1,9 +1,8 @@
 CREATE TABLE Users (
   id serial,
-  user_name char(20) UNIQUE NOT NULL,
-  user_phone char(20) UNIQUE,
+  name char(20) UNIQUE NOT NULL,
+  phone char(20) UNIQUE,
   date_of_birth DATE,
-  notes_count int DEFAULT 0,
   PRIMARY KEY (id)
 );
 
@@ -13,7 +12,6 @@ CREATE TABLE Notes (
   title char(50) NOT NULL,
   content char(280) NOT NULL,
   add_time TIMESTAMP(10) NOT NULL,
-  tags_count int DEFAULT 0,
   PRIMARY KEY (id),
   CONSTRAINT FK_UsersNotes FOREIGN KEY (user_id) REFERENCES Users(id)
 );

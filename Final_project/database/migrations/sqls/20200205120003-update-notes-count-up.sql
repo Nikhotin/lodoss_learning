@@ -1,3 +1,5 @@
+ALTER TABLE users ADD COLUMN notes_count int DEFAULT 0;
+
 CREATE OR REPLACE FUNCTION updateNotesCount() RETURNS TRIGGER AS $$
 DECLARE
 	usrid int;
