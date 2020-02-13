@@ -5,9 +5,11 @@ const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 
 const indexRouter = require('./routes/index');
-const notesRouter = require('./routes/notes');
 const featuresRouter = require('./routes/features');
 const newsRouter = require('./routes/news');
+const notesRouter = require('./api/v1/notes');
+const usersRouter = require('./api/v1/users');
+const hashtagsRouter = require('./api/v1/hashtags');
 
 const app = express();
 
@@ -25,6 +27,8 @@ app.use('/', indexRouter);
 app.use('/notes', notesRouter);
 app.use('/news', newsRouter);
 app.use('/features', featuresRouter);
+app.use('/users', usersRouter);
+app.use('/hashtags', hashtagsRouter);
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
