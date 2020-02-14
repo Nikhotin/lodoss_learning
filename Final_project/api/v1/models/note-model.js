@@ -1,4 +1,5 @@
 const Sequelize = require('sequelize');
+const User = require('./user-model');
 
 const sequelize = new Sequelize('notes', 'postgres', 'q1q1', {
   host: '127.0.0.1',
@@ -24,5 +25,8 @@ Note.init({
   timestamps: false,
   modelName: 'notes'
 });
+
+// Note.belongsTo(User, {foreignKeyConstraint: 'user_id'});
+// User.hasMany(Note, {foreignKeyConstraint: 'user_id'});
 
 module.exports = Note;

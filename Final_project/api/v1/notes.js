@@ -5,14 +5,14 @@ const router = express.Router();
 router
   .get('/', function(req, res, next) {
     Note.findAll().then(notes => {
-      res.render('notes', { notes: notes });
+      res.json(notes);
     });
   })
   .post('/', function(req, res, next) {
-    const newNote = Note(req.params.note);
+    const newNote = req.body;
 
     Note.create(newNote).then(newNote => {
-      res.render('notes', { message: `Заметка ${newNote.title} с ID ${newNote.id} была успешно создана` });
+      res.json({ message: `Заметка была успешно создана` });
     });
   })
   .get('/:noteId', function(req, res, next) {
@@ -23,40 +23,30 @@ router
         id: noteId
       }
     }).then(note => {
-      res.render('notes', { notes: note });
+      res.json(note);
     });
   })
   .put('/:noteId', function(req, res, next) {
     const noteId = req.params.noteId;
-    const newNote = Note(req.params.note);
+    const newNote = req.body;
 
     Note.update(newNote, { 
       where: {
         id: noteId
       }
     }).then(note => {
-      res.render('notes', { message: `Данные заметки с ID ${note.id} были успешно обновлены` });
+      res.json({ message: `Заметка была успешно обновлена` });
     });
   })
   .delete('/:noteId', function(req, res, next) {
     const noteId = req.params.noteId;
-    let title;
-    let id;
 
-    Note.findAll({
-      where: {
-        id: noteId
-      }
-    }).then(note => {
-      title = note.title;
-      id = note.id;
-    })
-    .destroy({
+    Note.destroy({
       where: {
         id: noteId
       }
     }).then(() => {
-      res.render('notes', { message: `Заметка ${title} с ID ${id} была успешно удалена` });
+      res.json({ message: `Заметка была успешно удалена` });
     });
   })
 

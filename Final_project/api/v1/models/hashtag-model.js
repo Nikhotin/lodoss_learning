@@ -1,4 +1,5 @@
 const Sequelize = require('sequelize');
+const Note = require('./note-model');
 
 const sequelize = new Sequelize('notes', 'postgres', 'q1q1', {
   host: '127.0.0.1',
@@ -21,5 +22,8 @@ Hashtag.init({
   timestamps: false,
   modelName: 'hashtag'
 });
+
+// Hashtag.belongsTo(Note, { as: 'Note'});
+// Note.hasMany(Hashtag, { as: 'Note'});
 
 module.exports = Hashtag;
