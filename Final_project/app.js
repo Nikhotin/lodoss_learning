@@ -3,6 +3,7 @@ const express = require('express');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
+var timeout = require('connect-timeout');
 
 const indexRouter = require('./routes/index');
 const featuresRouter = require('./routes/features');
@@ -18,10 +19,17 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 
 app.use(logger('dev'));
+app.use(timeout('5s'));
+app.use(haltOnTimedout);
+app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
+app.use(haltOnTimedout)
 app.use(express.static(path.join(__dirname, 'public')));
+
+function haltOnTimedout (req, res, next) {
+  if (!req.timedout) next()
+}
 
 app.use('/', indexRouter);
 app.use('/notes', notesRouter);
@@ -34,6 +42,8 @@ app.use('/hashtags', hashtagsRouter);
 app.use((req, res, next) => {
   next(createError(404));
 });
+
+app.use
 
 // error handler
 app.use((err, req, res, next) => {

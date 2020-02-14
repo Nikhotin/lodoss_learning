@@ -1,23 +1,28 @@
-var db = require("mongoose-sql");
+const Sequelize = require('sequelize');
 
-db.connect({
-    client: "pg",
-    connection: {
-      host: "127.0.0.1",
-      user: "postgres",
-      password: "q1q1",
-      database: "notes",
-      port: 5432
-    }
+const sequelize = new Sequelize('notes', 'postgres', 'q1q1', {
+  host: '127.0.0.1',
+  dialect: 'postgres'
 });
 
-
-var noteSchema = new db.Schema({
-    user_id: Number,
-    title: String,
-    contenc: String
+const Model = Sequelize.Model;
+class Note extends Model {}
+Note.init({
+  user_id: {
+    type: Sequelize.INTEGER,
+    allowNull: false
+  },
+  title: {
+    type: Sequelize.STRING,
+    allowNull: false
+  },
+  content: {
+    type: Sequelize.TEXT
+  }
+}, {
+  sequelize,
+  timestamps: false,
+  modelName: 'notes'
 });
-
-var Note = db.model('notes', noteSchema);
 
 module.exports = Note;

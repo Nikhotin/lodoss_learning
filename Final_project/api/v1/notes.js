@@ -1,69 +1,64 @@
 const express = require('express');
-const Notes = require('./models/note-model');
+const Note = require('./models/note-model');
 const router = express.Router();
 
 router
   .get('/', function(req, res, next) {
-    Note.find({}, function (err, notes) {
-      if (err) {
-        throw err;
-      } else {
-        res.json(notes);
-        // res.render('notes');
-      }
+    Note.findAll().then(notes => {
+      res.render('notes', { notes: notes });
     });
   })
   .post('/', function(req, res, next) {
-    const newNote = Note(req.swagger.params.note.value);
+    const newNote = Note(req.params.note);
 
-    newNote.save(function (err) {
-      if (err) {
-        throw err
-      } else {
-        res.json({message: 'OK'});
-        // res.render('notes');
-      }
+    Note.create(newNote).then(newNote => {
+      res.render('notes', { message: `Заметка ${newNote.title} с ID ${newNote.id} была успешно создана` });
     });
   })
   .get('/:noteId', function(req, res, next) {
-    const noteId = req.swagger.params.id.value;
+    const noteId = req.params.noteId;
 
-    Note.findById(noteId, function (err, note) {
-      if (err) {
-        throw err;
-      } else if (!note) {
-        res.status(404).json({message: 'Note not found'})
-      } else {
-        res.json({ title: note.title, content: note.content, add_time: note.add_time });
-        // res.render('notes');
+    Note.findAll({
+      where: {
+        id: noteId
       }
+    }).then(note => {
+      res.render('notes', { notes: note });
     });
   })
   .put('/:noteId', function(req, res, next) {
-    const noteId = req.swagger.params.id.value;
-    const newNote = req.swagger.params.note.value;
+    const noteId = req.params.noteId;
+    const newNote = Note(req.params.note);
 
-    Note.findByIdAndUpdate(noteId, newNote, function (err, note) {
-      if (err) {
-        throw err;
-      } else {
-        res.json({message: 'OK'});
-        // res.render('notes');
+    Note.update(newNote, { 
+      where: {
+        id: noteId
       }
+    }).then(note => {
+      res.render('notes', { message: `Данные заметки с ID ${note.id} были успешно обновлены` });
     });
   })
-  .delete('/:hashtagId', function(req, res, next) {
-    const noteId = req.swagger.params.id.value;
+  .delete('/:noteId', function(req, res, next) {
+    const noteId = req.params.noteId;
+    let title;
+    let id;
 
-    Note.findByIdAndRemove(noteId, function (err) {
-      if (err) {
-        throw err;
-      } else {
-        res.json({message: 'OK'});
-        // res.render('notes');
+    Note.findAll({
+      where: {
+        id: noteId
       }
+    }).then(note => {
+      title = note.title;
+      id = note.id;
+    })
+    .destroy({
+      where: {
+        id: noteId
+      }
+    }).then(() => {
+      res.render('notes', { message: `Заметка ${title} с ID ${id} была успешно удалена` });
     });
-  });
+  })
 
 module.exports = router;
 

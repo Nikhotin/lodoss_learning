@@ -4,65 +4,60 @@ const router = express.Router();
 
 router
   .get('/', function(req, res, next) {
-    User.find({}, function (err, users) {
-      if (err) {
-        throw err;
-      } else {
-        res.json(users);
-        // res.render('users');
-      }
+    User.findAll().then(users => {
+      res.render('users', { users: users });
     });
   })
   .post('/', function(req, res, next) {
-    const newUser = User(req.swagger.params.user.value);
+    const newUser = User(req.params.user);
 
-    newUser.save(function (err) {
-      if (err) {
-        throw err
-      } else {
-        res.json({message: 'OK'});
-        // res.render('users');
-      }
+    User.create(newUser).then(newUser => {
+      res.render('users', { message: `Пользователь ${newUser.name} с ID ${newUser.id} был успешно создан` });
     });
   })
   .get('/:userId', function(req, res, next) {
-    const userId = req.swagger.params.id.value;
+    const userId = req.params.userId;
 
-    User.findById(userId, function (err, user) {
-      if (err) {
-        throw err;
-      } else if (!user) {
-        res.status(404).json({message: 'User not found'})
-      } else {
-        res.json({name: users.name, phone: users.phone, date_of_birth: users.date_of_birth});
-        // res.render('users');
+    User.findAll({
+      where: {
+        id: userId
       }
+    }).then(user => {
+      res.render('users', { users: user });
     });
   })
   .put('/:userId', function(req, res, next) {
-    const userId = req.swagger.params.id.value;
-    const newUser = req.swagger.params.user.value;
+    const userId = req.params.userId;
+    const newUser = User(req.params.user);
 
-    User.findByIdAndUpdate(userId, newUser, function (err, user) {
-      if (err) {
-        throw err;
-      } else {
-        res.json({message: 'OK'});
-        // res.render('users');
+    User.update(newUser, { 
+      where: {
+        id: userId
       }
+    }).then(user => {
+      res.render('users', { message: `Данные пользователя с ID ${user.id} были успешно обновлены` });
     });
   })
   .delete('/:userId', function(req, res, next) {
-    const userId = req.swagger.params.id.value;
+    const userId = req.params.userId;
+    let name;
+    let id;
 
-    User.findByIdAndRemove(userId, function (err) {
-      if (err) {
-        throw err;
-      } else {
-        res.json({message: 'OK'});
-        // res.render('users');
+    User.findAll({
+      where: {
+        id: userId
       }
+    }).then(user => {
+      name = user.name;
+      id = user.id;
+    })
+    .destroy({
+      where: {
+        id: userId
+      }
+    }).then(() => {
+      res.render('users', { message: `Пользователь ${name} с ID ${id} был успешно удален` });
     });
-  });
+  })
   
   module.exports = router;

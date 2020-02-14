@@ -1,22 +1,25 @@
-var db = require("mongoose-sql");
+const Sequelize = require('sequelize');
 
-db.connect({
-    client: "pg",
-    connection: {
-      host: "127.0.0.1",
-      user: "postgres",
-      password: "q1q1",
-      database: "notes",
-      port: 5432
-    }
+const sequelize = new Sequelize('notes', 'postgres', 'q1q1', {
+  host: '127.0.0.1',
+  dialect: 'postgres'
 });
 
-
-var hashtagSchema = new db.Schema({
-    note_id: Number,
-    hashtag: String
+const Model = Sequelize.Model;
+class Hashtag extends Model {}
+Hashtag.init({
+  note_id: {
+    type: Sequelize.INTEGER,
+    allowNull: false
+  },
+  hashtag: {
+    type: Sequelize.STRING,
+    allowNull: false
+  }
+}, {
+  sequelize,
+  timestamps: false,
+  modelName: 'hashtag'
 });
-
-var Hashtag = db.model('hashtags', hashtagSchema);
 
 module.exports = Hashtag;

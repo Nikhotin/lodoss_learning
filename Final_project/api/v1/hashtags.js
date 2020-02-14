@@ -4,65 +4,60 @@ const router = express.Router();
 
 router
   .get('/', function(req, res, next) {
-    Hashtag.find({}, function (err, hashtags) {
-      if (err) {
-        throw err;
-      } else {
-        res.json(hashtags);
-        // res.render('hashtags');
-      }
+    Hashtag.findAll().then(hashtags => {
+      res.render('hashtags', { hashtags: hashtags });
     });
   })
   .post('/', function(req, res, next) {
-    const newHashtag = Hashtag(req.swagger.params.hashtag.value);
+    const newHashtag = Hashtag(req.params.hashtag);
 
-    newHashtag.save(function (err) {
-      if (err) {
-        throw err
-      } else {
-        res.json({message: 'OK'});
-        // res.render('hashtags');
-      }
+    Hashtag.create(newHashtag).then(newHashtag => {
+      res.render('hashtags', { message: `Хэштег ${newHashtag.hashtag} с ID ${newHashtag.id} был успешно создан` });
     });
   })
   .get('/:hashtagId', function(req, res, next) {
-    const hashtagId = req.swagger.params.id.value;
+    const hashtagId = req.params.hashtagId;
 
-    Hashtag.findById(hashtagId, function (err, hashtag) {
-      if (err) {
-        throw err;
-      } else if (!hashtag) {
-        res.status(404).json({message: 'Hashtag not found'})
-      } else {
-        res.json({ hashtag: hashtag.hashtag });
-        // res.render('hashtags');
+    Hashtag.findAll({
+      where: {
+        id: hashtagId
       }
+    }).then(hashtag => {
+      res.render('hashtags', { hashtags: hashtag });
     });
   })
   .put('/:hashtagId', function(req, res, next) {
-    const hashtagId = req.swagger.params.id.value;
-    const newHashtag = req.swagger.params.hashtag.value;
+    const hashtagId = req.params.hashtagId;
+    const newHashtag = Hashtag(req.params.hashtag);
 
-    Hashtag.findByIdAndUpdate(hashtagId, newHashtag, function (err, hashtag) {
-      if (err) {
-        throw err;
-      } else {
-        res.json({message: 'OK'});
-        // res.render('hashtags');
+    Hashtag.update(newHashtag, { 
+      where: {
+        id: hashtagId
       }
+    }).then(hashtag => {
+      res.render('hashtags', { message: `Хэштег с ID ${hashtag.id} был успешно обновлен` });
     });
   })
   .delete('/:hashtagId', function(req, res, next) {
-    const hashtagId = req.swagger.params.id.value;
+    const hashtagId = req.params.hashtagId;
+    let tag;
+    let id;
 
-    Hashtag.findByIdAndRemove(hashtagId, function (err) {
-      if (err) {
-        throw err;
-      } else {
-        res.json({message: 'OK'});
-        // res.render('hashtags');
+    Hashtag.findAll({
+      where: {
+        id: hashtagId
       }
+    }).then(hashtag => {
+      tag = hashtag.hashtag;
+      id = hashtag.id;
+    })
+    .destroy({
+      where: {
+        id: hashtagId
+      }
+    }).then(() => {
+      res.render('hashtags', { message: `Хэштег ${tag} с ID ${id} был успешно удален` });
     });
-  });
+  })
 
 module.exports = router;
