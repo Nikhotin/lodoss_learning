@@ -3,7 +3,6 @@ CREATE TABLE Users (
   name char(20) UNIQUE NOT NULL,
   phone char(20) UNIQUE,
   date_of_birth DATE,
-  notes_count int DEFAULT 0,
   PRIMARY KEY (id)
 );
 

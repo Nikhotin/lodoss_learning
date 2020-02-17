@@ -1,3 +1,5 @@
+ALTER TABLE notes ADD COLUMN tags_count int DEFAULT 0;
+
 CREATE OR REPLACE FUNCTION updateTagsCount() RETURNS TRIGGER AS $$
 DECLARE
 	ntid int;
