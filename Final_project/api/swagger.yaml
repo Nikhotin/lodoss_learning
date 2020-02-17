@@ -1,0 +1,358 @@
+swagger: "2.0"
+info:
+  version: "0.0.0"
+  title: Notes app
+# during dev, should point to your local machine
+host: localhost:3000
+# basePath prefixes all resource paths 
+basePath: /
+# 
+schemes:
+  # tip: remove http to make production-grade
+  - http
+  - https
+# format of bodies a client can send (Content-Type)
+consumes:
+  - application/json
+# format of the responses to the client (Accepts)
+produces:
+  - application/json
+paths:
+  /users:
+    get:
+      operationId: getAllUsers
+      description: Return a users list
+      responses:
+        "200":
+          description: Success 
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Users'
+        default:
+          description: Error
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+    post:
+      operationId: createUser
+      description: Add a new user
+      parameters:
+      - name: user
+        description: User properties
+        in: body
+        required: true
+        schema:
+          $ref: "#/definitions/Users"
+      responses:
+        "200":
+          description: Success
+          schema:
+            $ref: "#/definitions/GeneralResponse"
+        default:
+          description: Error
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+  /users/{id}:
+    get:
+      operationId: findUser
+      description: Return User by id
+      parameters:
+        - name: id
+          type: string
+          in: path
+          required: true
+      responses:
+        "200":
+          description: Success
+          schema:
+            $ref: '#/definitions/Users'
+        default:
+          description: Error
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+    put:
+      operationId: updateUser
+      description: Update a user
+      parameters:
+      - name: id
+        description: User id
+        type: string
+        in: path
+        required: true
+      - name: user
+        description: User properties
+        in: body
+        required: true
+        schema:
+          $ref: "#/definitions/Users"
+      responses:
+        "200":
+          description: Success
+          schema:
+            $ref: "#/definitions/GeneralResponse"
+        default:
+          description: Error
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+    delete:
+      operationId: removeUser
+      description: Delite a user by ID
+      parameters:
+      - name: id
+        description: user id
+        type: string
+        in: path
+        required: true
+      responses:
+        "200":
+          description: Success
+          schema:
+            $ref: "#/definitions/GeneralResponse"
+        default:
+          description: Error
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+  /notes:
+    get:
+      operationId: getAllNotes
+      description: Return a notes list
+      responses:
+        "200":
+          description: Success 
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Notes'
+        default:
+          description: Error
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+    post:
+      operationId: createNote
+      description: Add a new note
+      parameters:
+      - name: note
+        description: Note properties
+        in: body
+        required: true
+        schema:
+          $ref: "#/definitions/Notes"
+      responses:
+        "200":
+          description: Success
+          schema:
+            $ref: "#/definitions/GeneralResponse"
+        default:
+          description: Error
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+  /notes/{id}:
+    get:
+      operationId: findNote
+      description: Return Note by id
+      parameters:
+        - name: id
+          type: string
+          in: path
+          required: true
+      responses:
+        "200":
+          description: Success
+          schema:
+            $ref: '#/definitions/Notes'
+        default:
+          description: Error
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+    put:
+      operationId: updateNote
+      description: Update a note
+      parameters:
+      - name: id
+        description: Note id
+        type: string
+        in: path
+        required: true
+      - name: note
+        description: Note properties
+        in: body
+        required: true
+        schema:
+          $ref: "#/definitions/Notes"
+      responses:
+        "200":
+          description: Success
+          schema:
+            $ref: "#/definitions/GeneralResponse"
+        default:
+          description: Error
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+    delete:
+      operationId: removeNote
+      description: Delite a note by ID
+      parameters:
+      - name: id
+        description: note id
+        type: string
+        in: path
+        required: true
+      responses:
+        "200":
+          description: Success
+          schema:
+            $ref: "#/definitions/GeneralResponse"
+        default:
+          description: Error
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+  /hashtag:
+    get:
+      operationId: getAllHashtags
+      description: Return a hashtags list
+      responses:
+        "200":
+          description: Success 
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Hashtag'
+        default:
+          description: Error
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+    post:
+      operationId: createHashtag
+      description: Add a new hashtag
+      parameters:
+      - name: hashtag
+        description: Hashtag properties
+        in: body
+        required: true
+        schema:
+          $ref: "#/definitions/Hashtag"
+      responses:
+        "200":
+          description: Success
+          schema:
+            $ref: "#/definitions/GeneralResponse"
+        default:
+          description: Error
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+  /hashtag/{id}:
+    x-swagger-router-controller: hashtag-controller
+    get:
+      operationId: findHashtag
+      description: Return Hashtag by id
+      parameters:
+        - name: id
+          type: string
+          in: path
+          required: true
+      responses:
+        "200":
+          description: Success
+          schema:
+            $ref: '#/definitions/Hashtag'
+        default:
+          description: Error
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+    put:
+      operationId: updateHashtag
+      description: Update a hashtag
+      parameters:
+      - name: id
+        description: Hashtag id
+        type: string
+        in: path
+        required: true
+      - name: hashtag
+        description: Hashtag properties
+        in: body
+        required: true
+        schema:
+          $ref: "#/definitions/Hashtag"
+      responses:
+        "200":
+          description: Success
+          schema:
+            $ref: "#/definitions/GeneralResponse"
+        default:
+          description: Error
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+    delete:
+      operationId: removeHashtag
+      description: Delite a hashtag by ID
+      parameters:
+      - name: id
+        description: hashtag id
+        type: string
+        in: path
+        required: true
+      responses:
+        "200":
+          description: Success
+          schema:
+            $ref: "#/definitions/GeneralResponse"
+        default:
+          description: Error
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+  /swagger:
+    x-swagger-pipe: swagger_raw
+# complex objects have schema definitions
+definitions:
+  User:
+    properties:
+      id:
+        type: integer
+      name:
+        type: string
+      phone:
+        type: string
+      date_of_bith:
+        type: string
+    required:
+      - name
+      - phone
+      - date_of_bith
+  Note:
+    properties:
+      id:
+        type: integer
+      user_id:
+        type: integer
+      title:
+        type: string
+      content:
+        type: string
+    required:
+      - user_id
+      - title
+      - content
+  Hashtag:
+    properties:
+      id:
+        type: integer
+      note_id:
+        type: integer
+      hashtag:
+        type: string
+    required:
+      - note_id
+      - hashtag
+  GeneralResponse:
+    properties:
+      message:
+        type: string
+    required:
+      - message
+  ErrorResponse:
+    properties:
+      message:
+        type: string
+    required:
+      - message

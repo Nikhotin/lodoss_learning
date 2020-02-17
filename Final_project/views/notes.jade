@@ -3,13 +3,15 @@ extends layout
 .header
   block header
     a.button#active(href="/notes") Notes
+    a.button(href="/users") Users
+    a.button(href="/hashtags") Hashtags
     a.button(href="/news") News
     a.button(href="/features") Features
 .sidebar-left
 .main
   block main
-    p Content
+    Notes= notes
+    Message= message
 .sidebar-right
 .footer
   block footer
-    p Footer

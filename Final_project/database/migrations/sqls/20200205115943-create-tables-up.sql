@@ -11,31 +11,27 @@ CREATE TABLE Notes (
   user_id int NOT NULL,
   title char(50) NOT NULL,
   content char(280) NOT NULL,
-  add_time TIMESTAMP(10) NOT NULL,
-  PRIMARY KEY (id),
-  CONSTRAINT FK_UsersNotes FOREIGN KEY (user_id) REFERENCES Users(id)
+  add_time TIMESTAMP(10) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  tags_count int DEFAULT 0,
+  PRIMARY KEY (id)
 );
-
---REFERENCES Users(user_id) ON UPDATE CASCADE ON DELETE CASCADE
 
 CREATE TABLE Likes (
   id serial,
   user_id int NOT NULL,
   note_id int NOT NULL,
-  PRIMARY KEY (id),
-  CONSTRAINT FK_UsersLikes FOREIGN KEY (user_id) REFERENCES Users(id),
-  CONSTRAINT FK_NotesLikes FOREIGN KEY (note_id) REFERENCES Notes(id)
+  PRIMARY KEY (id)
 );
-
---REFERENCES Users(user_id) ON UPDATE CASCADE ON DELETE CASCADE,
---REFERENCES Notes(note_id) ON UPDATE CASCADE ON DELETE CASCADE
 
 CREATE TABLE Hashtags (
   id serial,
   note_id int NOT NULL,
   hashtag char(50) NOT NULL,
-  PRIMARY KEY (id),
-  CONSTRAINT FK_NotesHashtags FOREIGN KEY (note_id) REFERENCES Notes(id)
+  PRIMARY KEY (id)
 );
 
---REFERENCES Notes(note_id) ON UPDATE CASCADE ON DELETE CASCADE
+ALTER TABLE notes ADD FOREIGN KEY(user_id) REFERENCES users (id) ON DELETE CASCADE;
+ALTER TABLE hashtags ADD FOREIGN KEY(note_id) REFERENCES notes (id) ON DELETE CASCADE;
+ALTER TABLE likes ADD FOREIGN KEY(user_id) REFERENCES users (id) ON DELETE CASCADE;
+ALTER TABLE likes ADD FOREIGN KEY(note_id) REFERENCES notes (id) ON DELETE CASCADE;
+
