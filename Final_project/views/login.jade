@@ -1,0 +1,23 @@
+extends layout
+
+.header
+  block header
+    a.button(href="/notes") Notes
+    a.button(href="/users") Users
+    a.button(href="/hashtags") Hashtags
+    a.button(href="/news") News
+    a.button(href="/features") Features
+.sidebar-left
+.main
+  block main
+    form(method='POST' action='/login')
+          div.form-group
+            label(for='username') username
+            input.form-control(type='text' id='username' placeholder='username' name='username')
+          div.form-group
+            label(for='password') Password
+            input.form-control(type='password' id='password' placeholder='password' name='password')
+          button.btn.btn-primary(type='submit') Log in 
+.sidebar-right
+.footer
+  block footer
