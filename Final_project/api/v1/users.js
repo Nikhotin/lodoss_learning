@@ -18,7 +18,7 @@ router
   .get('/:userId', function(req, res, next) {
     const userId = req.params.userId;
 
-    User.findAll({
+    User.findOne({
       where: {
         id: userId
       }

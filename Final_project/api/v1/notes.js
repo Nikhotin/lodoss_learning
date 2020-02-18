@@ -17,8 +17,8 @@ router
   })
   .get('/:noteId', function(req, res, next) {
     const noteId = req.params.noteId;
-
-    Note.findAll({
+    
+    Note.findOne({
       where: {
         id: noteId
       }

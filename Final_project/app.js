@@ -14,7 +14,6 @@ const newsRouter = require('./routes/news');
 const notesRouter = require('./api/v1/notes');
 const usersRouter = require('./api/v1/users');
 const hashtagsRouter = require('./api/v1/hashtags');
-const loginRouter = require('./routes/login');
 
 const app = express();
 
@@ -43,7 +42,6 @@ app.use('/news', newsRouter);
 app.use('/features', featuresRouter);
 app.use('/users', usersRouter);
 app.use('/hashtags', hashtagsRouter);
-app.use('/login', loginRouter);
 
 app.get('/error', (req, res) => res.json({ message: 'error logging in' }));
 
@@ -70,10 +68,10 @@ passport.use(new LocalStrategy(
   }
 ));
 
-app.post('/login', 
+app.post('/', 
   passport.authenticate('local', { failureRedirect: '/error' }),
   function(req, res) {
-    res.json({ message: 'Welcome '+req.user.name });
+    res.redirect('/users/'+req.user.id);
   });
 
 // catch 404 and forward to error handler

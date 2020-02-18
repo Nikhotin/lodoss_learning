@@ -23,7 +23,4 @@ Hashtag.init({
   modelName: 'hashtag'
 });
 
-// Hashtag.belongsTo(Note, { as: 'Note'});
-// Note.hasMany(Hashtag, { as: 'Note'});
-
 module.exports = Hashtag;

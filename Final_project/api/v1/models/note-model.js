@@ -26,7 +26,4 @@ Note.init({
   modelName: 'notes'
 });
 
-// Note.belongsTo(User, {foreignKeyConstraint: 'user_id'});
-// User.hasMany(Note, {foreignKeyConstraint: 'user_id'});
-
 module.exports = Note;

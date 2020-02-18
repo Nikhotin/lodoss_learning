@@ -9,7 +9,15 @@ extends layout
     a.button(href="/features") Features
 .sidebar-left
 .main
-  block main     
+  block main
+    form(method='POST' action='/')
+          div
+            label(for='username') username
+            input(type='text' id='username' placeholder='username' name='username')
+          div
+            label(for='password') Password
+            input(type='password' id='password' placeholder='password' name='password')
+          button(type='submit') Log in 
 .sidebar-right
 .footer
   block footer

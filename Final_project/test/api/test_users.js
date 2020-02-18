@@ -63,7 +63,7 @@ describe('routers', function() {
           .end(function(err, res) {
             should.not.exist(err);
           
-            res.body[0].should.be.an.instanceOf(Object);
+            res.body.should.be.an.instanceOf(Object);
             res.body.should.be.instanceOf(Array).and.have.lengthOf(1);
 
             done();

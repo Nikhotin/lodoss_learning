@@ -18,7 +18,7 @@ router
   .get('/:hashtagId', function(req, res, next) {
     const hashtagId = req.params.hashtagId;
 
-    Hashtag.findAll({
+    Hashtag.findOne({
       where: {
         id: hashtagId
       }
